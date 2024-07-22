@@ -17,7 +17,88 @@
     </div>
   </div>
   <div class="Group18">
-
+    <table class="box">
+      <tr>
+        <td> 編號 </td>
+        <td> 名稱 </td>
+        <td> 狀態 </td>
+        <td> 開始時間 </td>
+        <td> 結束時間 </td>
+        <td> 結果 </td>
+      </tr>
+      <tr>
+        <td> #444 </td>
+        <td> 購買頃項市調 </td>
+        <td> 尚未開始 </td>
+        <td> 2023/11/12 </td>
+        <td> 2024/5/2 </td>
+        <td> 前往 </td>
+      </tr>
+      <tr>
+        <td> #445 </td>
+        <td> 青春洋溢高中生 </td>
+        <td> 進行中 </td>
+        <td> 2023/12/5 </td>
+        <td> 2024/3/2 </td>
+        <td> 前往 </td>
+      </tr>
+      <tr>
+        <td> #446 </td>
+        <td> 尾牙餐廳預選 </td>
+        <td> 已結束 </td>
+        <td> 2023/1/5 </td>
+        <td> 2023/6/2 </td>
+        <td> 前往 </td>
+      </tr>
+      <tr>
+        <td> #447 </td>
+        <td> 中秋禮盒預選 </td>
+        <td> 已結束 </td>
+        <td> 2023/3/5 </td>
+        <td> 2023/7/2 </td>
+        <td> 前往 </td>
+      </tr>
+      <tr>
+        <td> #448 </td>
+        <td> 購買傾項市調 </td>
+        <td> 已結束 </td>
+        <td> 2023/5/5 </td>
+        <td> 2023/8/2 </td>
+        <td> 前往 </td>
+      </tr>
+      <tr>
+        <td> #449 </td>
+        <td> 最佳員工 </td>
+        <td> 已結束 </td>
+        <td> 2024/3/5 </td>
+        <td> 2024/7/2 </td>
+        <td> 前往 </td>
+      </tr>
+      <tr>
+        <td> #450 </td>
+        <td> 大會參加統計 </td>
+        <td> 已結束 </td>
+        <td> 2024/2/5 </td>
+        <td> 2024/6/2 </td>
+        <td> 前往 </td>
+      </tr>
+      <tr>
+        <td> #451 </td>
+        <td> 第六期好員工票選 </td>
+        <td> 已結束 </td>
+        <td> 2024/2/5 </td>
+        <td> 2024/6/2 </td>
+        <td> 前往 </td>
+      </tr>
+      <tr>
+        <td> #452 </td>
+        <td> 會議參加統計 </td>
+        <td> 已結束 </td>
+        <td> 2024/2/5 </td>
+        <td> 2024/6/2 </td>
+        <td> 前往 </td>
+      </tr>
+    </table>
   </div>
   <div class="page">
     <p>
@@ -93,6 +174,13 @@ body {
   height: 500px;
   border: 1px solid rgb(0, 0, 0);
   margin-top: 10px;
+
+  .box {
+    width: 1500px;
+    height: 500px;
+    border: 1px solid rgb(0, 0, 0);
+    text-align: center;
+  }
 }
 
 .page {
