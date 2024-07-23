@@ -62,14 +62,36 @@
             <p>請說明理由</p>
         </div>
         <div class="area1">
-            <textarea class="charger" id="">51131</textarea>
+            <textarea name="" id=""></textarea>
         </div>
+        <!-- <div class="area1">
+            <textarea class="charger" id="">51131</textarea>
+        </div> -->
     </div>
     <div class="Group12">
-        <div class="bee"></div>
-        <div class="bee1"></div>
-        <div class="bee2"></div>
-        <div class="bee3"></div>
+        <div class="bee">
+            <p>3.請選取在活動開始前有聽過的人(必填)</p>
+        </div>
+        <div class="bee1">
+            <input type="checkbox" id="" name=""> 何廢料(建國中學) </input>
+        </div>
+        <div class="bee2">
+            <input type="checkbox" id="" name=""> +7/77(金甄女中) </input>
+        </div>
+        <div class="bee3">
+            <input type="checkbox" id="" name=""> wen wen (金門高中) </input>
+        </div>
+        <div class="bee4">
+            <input type="checkbox" id="" name=""> uily (基隆高中) </input>
+        </div>
+    </div>
+    <div class="Group10">
+        <div class="egg1">
+            <button class="Cancel">取消</button>
+        </div>
+        <div class="egg2">
+            <button class="send">送出</button>
+        </div>
     </div>
 </template>
 <style scoped lang="scss">
@@ -84,7 +106,7 @@ body {
 }
 
 .first {
-    width: 1520px;
+    width: 1500px;
     height: 60px;
     border: 1px solid rgb(0, 0, 0);
     background-color: rgb(255, 255, 255);
@@ -92,6 +114,7 @@ body {
     p {
         font-size: 20px;
         text-align: center;
+        padding-top: 15px;
     }
 }
 
@@ -242,7 +265,7 @@ body {
 
 .Group13 {
     width: 400px;
-    height: 200px;
+    height: 120px;
     border: 1px solid rgb(0, 0, 0);
     display: flex;
     flex-direction: column;
@@ -252,33 +275,102 @@ body {
     .area {
         width: 400px;
         height: 50px;
-        border: 1px solid rgb(0, 0, 0);
-        text-align: center;
-        padding-top: 20px;
+        text-align: left;
+        padding-top: 10px;
     }
 
     .area1 {
         width: 400px;
-        height: 140px;
-        border: 1px solid rgb(0, 0, 0);
+        height: 112px;
+        padding-top: 10px;
+        position: relative;
 
-
-        .charger {
+        textarea {
+            width: 400px;
+            height: 80px;
+            border: 1px solid rgb(0, 0, 0);
             resize: none;
+            position: absolute;
+            left: -1px;
         }
     }
 }
 
 .Group12 {
-    width: 450px;
-    height: 200px;
+    width: 500px;
+    height: 250px;
     border: 1px solid rgb(0, 0, 0);
-    margin-top: 20px;
+    margin-top: 30px;
     margin-left: 300px;
+    display: flex;
+    flex-direction: column;
+    text-align: left;
 
     .bee {
-        width: 450px;
-        height: 200px;
+        width: 500px;
+        height: 50px;
+        border: 1px solid rgb(0, 0, 0);
+    }
+
+    .bee1 {
+        width: 500px;
+        height: 50px;
+        border: 1px solid rgb(0, 0, 0);
+    }
+
+    .bee2 {
+        width: 500px;
+        height: 50px;
+        border: 1px solid rgb(0, 0, 0);
+    }
+
+    .bee3 {
+        width: 500px;
+        height: 50px;
+        border: 1px solid rgb(0, 0, 0);
+    }
+
+    .bee4 {
+        width: 500px;
+        height: 50px;
+        border: 1px solid rgb(0, 0, 0);
+    }
+}
+
+.Group10 {
+    width: 400px;
+    height: 50px;
+    border: 1px solid rgb(0, 0, 0);
+    margin-top: 25px;
+    margin-left: 1000px;
+    display: flex;
+
+    .egg1 {
+        width: 200px;
+        height: 50px;
+        border: 1px solid rgb(0, 0, 0);
+        display: flex;
+        justify-content: center;
+        align-items: center;
+
+        .Cancel {
+            width: 100px;
+            height: 30px;
+        }
+    }
+
+    .egg2 {
+        width: 200px;
+        height: 50px;
+        border: 1px solid rgb(0, 0, 0);
+        display: flex;
+        justify-content: center;
+        align-items: center;
+
+        .send {
+            width: 100px;
+            height: 30px;
+        }
     }
 }
 </style>
