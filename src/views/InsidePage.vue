@@ -45,17 +45,31 @@
             <p>請選取最喜歡的人(必填)</p>
         </div>
         <div class="team1">
-            1456
+            <input type="checkbox" id="" name=""> 14545 </input>
         </div>
         <div class="team2">
-            7894563
+            <input type="checkbox" id="" name=""> 326656 </input>
         </div>
         <div class="team3">
-            131
+            <input type="checkbox" id="" name=""> 454545 </input>
         </div>
         <div class="team4">
-            4611
+            <input type="checkbox" id="" name=""> 889897 </input>
         </div>
+    </div>
+    <div class="Group13">
+        <div class="area">
+            <p>請說明理由</p>
+        </div>
+        <div class="area1">
+            <textarea class="charger" id="">51131</textarea>
+        </div>
+    </div>
+    <div class="Group12">
+        <div class="bee"></div>
+        <div class="bee1"></div>
+        <div class="bee2"></div>
+        <div class="bee3"></div>
     </div>
 </template>
 <style scoped lang="scss">
@@ -180,32 +194,91 @@ body {
 }
 
 .Group15 {
-    width: 1520px;
-    height: 400px;
+    width: 300px;
+    height: 200px;
     border: 1px solid rgb(0, 0, 0);
+    display: flex;
+    flex-direction: column;
+    margin-top: 15px;
+    margin-left: 300px;
 
     .team {
-        width: 500px;
-        height: 100px;
+        width: 300px;
+        height: 50px;
         border: 1px solid rgb(0, 0, 0);
+        padding-top: 10px;
     }
 
     .team1 {
-        width: 500px;
-        height: 100px;
+        width: 300px;
+        height: 50px;
         border: 1px solid rgb(0, 0, 0);
+        padding-top: 10px;
     }
 
     .team2 {
-        width: 500px;
-        height: 100px;
+        width: 300px;
+        height: 50px;
         border: 1px solid rgb(0, 0, 0);
+
+        padding-top: 10px;
     }
 
     .team3 {
-        width: 500px;
-        height: 100px;
+        width: 300px;
+        height: 50px;
         border: 1px solid rgb(0, 0, 0);
+
+        padding-top: 10px;
+    }
+
+    .team4 {
+        width: 300px;
+        height: 50px;
+        border: 1px solid rgb(0, 0, 0);
+        padding-top: 10px;
+    }
+}
+
+.Group13 {
+    width: 400px;
+    height: 200px;
+    border: 1px solid rgb(0, 0, 0);
+    display: flex;
+    flex-direction: column;
+    margin-top: 20px;
+    margin-left: 300px;
+
+    .area {
+        width: 400px;
+        height: 50px;
+        border: 1px solid rgb(0, 0, 0);
+        text-align: center;
+        padding-top: 20px;
+    }
+
+    .area1 {
+        width: 400px;
+        height: 140px;
+        border: 1px solid rgb(0, 0, 0);
+
+
+        .charger {
+            resize: none;
+        }
+    }
+}
+
+.Group12 {
+    width: 450px;
+    height: 200px;
+    border: 1px solid rgb(0, 0, 0);
+    margin-top: 20px;
+    margin-left: 300px;
+
+    .bee {
+        width: 450px;
+        height: 200px;
     }
 }
 </style>
