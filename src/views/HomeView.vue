@@ -101,9 +101,7 @@
     </table>
   </div>
   <div class="page">
-    <p>
-      << | < | 1 | 2 | 3 | 4 | 5 | 6 | 7 | 8 | 9 |> | >>
-    </p>
+    <p></p>
   </div>
 </template>
 <style scoped lang="scss">
@@ -188,8 +186,8 @@ body {
   height: 28px;
   border: 1px solid rgb(0, 0, 0);
   display: flex;
-  margin-left: 300px;
-  margin-top: 10px;
+  margin-left: 380px;
+  margin-top: 15px;
   padding-left: 200px;
 }
 </style>

@@ -11,6 +11,8 @@ export default {
     <div class="headerArea">
         <RouterLink to="/">Home</RouterLink>
         <RouterLink to="/VtextAndVmodel">VtextAndVmodel</RouterLink>
+        <RouterLink to="/InsidePage">InsidePage</RouterLink>
+
     </div>
 </template>
 
