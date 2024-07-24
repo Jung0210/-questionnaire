@@ -12,7 +12,7 @@ export default {
         <RouterLink to="/">Home</RouterLink>
         <RouterLink to="/VtextAndVmodel">VtextAndVmodel</RouterLink>
         <RouterLink to="/InsidePage">InsidePage</RouterLink>
-
+        <RouterLink to="/ConfirmationPage">ConfirmationPage</RouterLink>
     </div>
 </template>
 
