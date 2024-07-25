@@ -18,10 +18,16 @@
         </div>
     </div>
     <div class="Group1">
-        <div class="oval1">
+        <div class="oval0">
+            <div class="oval1">
+                <p>問卷名稱:</p>
+                <input type="text">
+            </div>
+        </div>
+        <!-- <div class="oval1">
             <p>問卷名稱:</p>
             <input type="text">
-        </div>
+        </div> -->
         <div class="oval2">
             <p>問卷說明:</p>
             <textarea name="" id=""></textarea>
@@ -35,12 +41,7 @@
             <input type="date" id="bookdate" name="">
         </div>
         <div class="Group2">
-            <div class="bean1">
-                <button class="Cancel">取消</button>
-            </div>
-            <div class="bean2">
-                <button class="next">下一步</button>
-            </div>
+
         </div>
     </div>
 </template>
@@ -56,12 +57,12 @@ body {
 }
 
 .Group0 {
-    width: 900px;
+    width: 1000px;
     height: 50px;
-    // border: 1px solid rgb(0, 0, 0);
+    border: 1px solid rgb(0, 0, 0);
     display: flex;
-    margin-left: 300px;
-    margin-top: 50px;
+    margin-left: 200px;
+    margin-top: 40px;
 
     .circle1 {
         width: 150px;
@@ -127,41 +128,50 @@ body {
 }
 
 .Group1 {
-    width: 900px;
-    height: 800px;
+    width: 1000px;
+    height: 500px;
     border: 1px solid rgb(0, 0, 0);
-    margin-left: 300px;
+    margin-left: 200px;
     display: flex;
+    // justify-content: space-between;
     flex-direction: column;
     position: relative;
 
-    .oval1 {
+    .oval0 {
         width: 900px;
-        height: 200px;
-        // border: 1px solid rgb(0, 0, 0);
+        height: 100px;
+        border: 1px solid rgb(0, 0, 0);
         display: flex;
-        justify-content: center;
-        align-items: center;
-        font-size: 30px;
-        padding-right: 100px;
+        flex-direction: column;
 
-        input {
-            width: 400px;
-            height: 50px;
+        .oval1 {
+            width: 900px;
+            height: 100px;
+            border: 1px solid rgb(0, 0, 0);
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            font-size: 30px;
+            padding-right: 100px;
+
+            input {
+                width: 500px;
+                height: 60px;
+            }
         }
     }
 
     .oval2 {
         width: 900px;
-        height: 200px;
-        // border: 1px solid rgb(0, 0, 0);
+        height: 150px;
+        border: 1px solid rgb(0, 0, 0);
         display: flex;
         justify-content: center;
         align-items: center;
         font-size: 30px;
 
         textarea {
-            width: 502px;
+            width: 599px;
             height: 137px;
             resize: none;
         }
@@ -169,13 +179,13 @@ body {
 
     .oval3 {
         width: 900px;
-        height: 200px;
-        // border: 1px solid rgb(0, 0, 0);
+        height: 100px;
+        border: 1px solid rgb(0, 0, 0);
         display: flex;
         justify-content: center;
         align-items: center;
         font-size: 30px;
-        padding-right: 260px;
+        padding-right: 350px;
 
         input {
             font-size: 30px;
@@ -184,13 +194,13 @@ body {
 
     .oval4 {
         width: 900px;
-        height: 200px;
-        // border: 1px solid rgb(0, 0, 0);
+        height: 100px;
+        border: 1px solid rgb(0, 0, 0);
         display: flex;
         justify-content: center;
         align-items: center;
         font-size: 30px;
-        padding-right: 260px;
+        padding-right: 350px;
 
         input {
             font-size: 30px;
@@ -199,40 +209,9 @@ body {
     }
 
     .Group2 {
-        width: 400px;
+        width: 900px;
         height: 50px;
-        // border: 1px solid rgb(0, 0, 0);
-        display: flex;
-        margin-left: 500px;
-
-        .bean1 {
-            width: 200px;
-            height: 50px;
-            // border: 1px solid rgb(0, 0, 0);
-            display: flex;
-            justify-content: center;
-            align-items: center;
-
-            .Cancel {
-                width: 100px;
-                height: 30px;
-            }
-        }
-
-        .bean2 {
-            width: 200px;
-            height: 50px;
-            // border: 1px solid rgb(0, 0, 0);
-            display: flex;
-            justify-content: center;
-            align-items: center;
-
-            .next {
-                width: 100px;
-                height: 30px;
-            }
-        }
+        border: 1px solid rgb(0, 0, 0);
     }
-
 }
 </style>
