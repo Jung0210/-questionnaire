@@ -41,7 +41,12 @@
             <input type="date" id="bookdate" name="">
         </div>
         <div class="Group2">
-
+            <div class="bean1">
+                <button class="Cancel">取消</button>
+            </div>
+            <div class="bean2">
+                <button class="next">下一步</button>
+            </div>
         </div>
     </div>
 </template>
@@ -59,7 +64,7 @@ body {
 .Group0 {
     width: 1000px;
     height: 50px;
-    border: 1px solid rgb(0, 0, 0);
+    // border: 1px solid rgb(0, 0, 0);
     display: flex;
     margin-left: 200px;
     margin-top: 40px;
@@ -140,14 +145,14 @@ body {
     .oval0 {
         width: 900px;
         height: 100px;
-        border: 1px solid rgb(0, 0, 0);
+        // border: 1px solid rgb(0, 0, 0);
         display: flex;
         flex-direction: column;
 
         .oval1 {
             width: 900px;
             height: 100px;
-            border: 1px solid rgb(0, 0, 0);
+            // border: 1px solid rgb(0, 0, 0);
             display: flex;
             justify-content: center;
             align-items: center;
@@ -164,7 +169,7 @@ body {
     .oval2 {
         width: 900px;
         height: 150px;
-        border: 1px solid rgb(0, 0, 0);
+        // border: 1px solid rgb(0, 0, 0);
         display: flex;
         justify-content: center;
         align-items: center;
@@ -180,7 +185,7 @@ body {
     .oval3 {
         width: 900px;
         height: 100px;
-        border: 1px solid rgb(0, 0, 0);
+        // border: 1px solid rgb(0, 0, 0);
         display: flex;
         justify-content: center;
         align-items: center;
@@ -195,7 +200,7 @@ body {
     .oval4 {
         width: 900px;
         height: 100px;
-        border: 1px solid rgb(0, 0, 0);
+        // border: 1px solid rgb(0, 0, 0);
         display: flex;
         justify-content: center;
         align-items: center;
@@ -211,7 +216,37 @@ body {
     .Group2 {
         width: 900px;
         height: 50px;
-        border: 1px solid rgb(0, 0, 0);
+        // border: 1px solid rgb(0, 0, 0);
+        display: flex;
+        justify-content: right;
+
+        .bean1 {
+            width: 200px;
+            height: 50px;
+            // border: 1px solid rgb(0, 0, 0);
+            display: flex;
+            justify-content: center;
+            align-items: center;
+
+            .Cancel {
+                width: 100px;
+                height: 30px;
+            }
+        }
+
+        .bean2 {
+            width: 200px;
+            height: 50px;
+            // border: 1px solid rgb(0, 0, 0);
+            display: flex;
+            justify-content: center;
+            align-items: center;
+
+            .next {
+                width: 100px;
+                height: 30px;
+            }
+        }
     }
 }
 </style>
