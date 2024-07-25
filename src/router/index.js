@@ -41,7 +41,23 @@ const router = createRouter({
       // this generates a separate chunk (About.[hash].js) for this route
       // which is lazy-loaded when the route is visited.
       component: () => import('../views/StatisticPage.vue')
-    }
+    },
+    {
+      path: '/BackEnd',
+      name: 'Backend',
+      // route level code-splitting
+      // this generates a separate chunk (About.[hash].js) for this route
+      // which is lazy-loaded when the route is visited.
+      component: () => import('../views/BackEnd.vue')
+    },
+    {
+      path: '/BackEndInsidePage',
+      name: 'BackEndInsidePage',
+      // route level code-splitting
+      // this generates a separate chunk (About.[hash].js) for this route
+      // which is lazy-loaded when the route is visited.
+      component: () => import('../views/BackEndInsidePage.vue')
+    },
   ]
 })
 

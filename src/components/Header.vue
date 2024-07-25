@@ -14,6 +14,8 @@ export default {
         <RouterLink to="/InsidePage">InsidePage</RouterLink>
         <RouterLink to="/ConfirmationPage">ConfirmationPage</RouterLink>
         <RouterLink to="/StatisticPage">StatisticPage</RouterLink>
+        <RouterLink to="/BackEnd">BackEnd</RouterLink>
+        <RouterLink to="/BackEndInsidePage">BackEndInsidePage</RouterLink>
     </div>
 </template>
 
