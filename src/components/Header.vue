@@ -16,6 +16,7 @@ export default {
         <RouterLink to="/StatisticPage">StatisticPage</RouterLink>
         <RouterLink to="/BackEnd">BackEnd</RouterLink>
         <RouterLink to="/BackEndInsidePage">BackEndInsidePage</RouterLink>
+        <RouterLink to="/BackEndInsidePage2">BackEndInsidePage2</RouterLink>
     </div>
 </template>
 
