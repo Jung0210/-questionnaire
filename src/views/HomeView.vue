@@ -36,11 +36,15 @@
       </tr>
       <tr>
         <td> #445 </td>
-        <td>青春洋溢高中生</td>
+        <td>
+          <RouterLink to="/ConfirmationPage">青春洋溢高中生</RouterLink>
+        </td>
         <td> 進行中 </td>
         <td> 2023/12/5 </td>
         <td> 2024/3/2 </td>
-        <td> 前往 </td>
+        <td>
+          <RouterLink to="/StatisticPage">前往</RouterLink>
+        </td>
       </tr>
       <tr>
         <td> #446 </td>
