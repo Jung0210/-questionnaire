@@ -37,7 +37,7 @@
       <tr>
         <td> #445 </td>
         <td>
-          <RouterLink to="/ConfirmationPage">青春洋溢高中生</RouterLink>
+          <RouterLink to="/InsidePage">青春洋溢高中生</RouterLink>
         </td>
         <td> 進行中 </td>
         <td> 2023/12/5 </td>
