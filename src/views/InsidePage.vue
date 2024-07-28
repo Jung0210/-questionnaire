@@ -87,10 +87,10 @@
     </div>
     <div class="Group10">
         <div class="egg1">
-            <button class="Cancel">取消</button>
+            <button class="Cancel" @click="this.$router.push(`/`)">取消</button>
         </div>
         <div class="egg2">
-            <button class="send">送出</button>
+            <button class="send" @click="this.$router.push(`/ConfirmationPage`)">送出</button>
         </div>
     </div>
 </template>
