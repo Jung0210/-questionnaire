@@ -1,5 +1,86 @@
 <script>
+export default {
+  data() {
+    return {
+      pageArray: [{
+        number: 444,
+        name: "購買傾項市調",
+        situation: "尚未開始",
+        dateStart: "2023/11/12",
+        dateEnd: "2024/05/02",
+        result: "前往"
+      },
+      {
+        number: 445,
+        name: "青春洋溢高中生",
+        situation: "進行中",
+        dateStart: "2023/12/05",
+        dateEnd: "2024/03/02",
+        result: "前往"
+      },
+      {
+        number: 446,
+        name: "尾牙餐廳預選",
+        situation: "已結束",
+        dateStart: "2023/01/05",
+        dateEnd: "2024/06/02",
+        result: "前往"
+      },
+      {
+        number: 447,
+        name: "中秋禮盒預選",
+        situation: "已結束",
+        dateStart: "2023/03/05",
+        dateEnd: "2024/07/02",
+        result: "前往"
+      },
+      {
+        number: 448,
+        name: "購買傾向市調",
+        situation: "已結束",
+        dateStart: "2023/05/05",
+        dateEnd: "2024/08/02",
+        result: "前往"
+      },
+      {
+        number: 449,
+        name: "最佳員工",
+        situation: "已結束",
+        dateStart: "2023/03/05",
+        dateEnd: "2024/07/02",
+        result: "前往"
+      },
+      {
+        number: 450,
+        name: "大會參加統計",
+        situation: "已結束",
+        dateStart: "2023/02/05",
+        dateEnd: "2024/06/02",
+        result: "前往"
+      },
+      {
+        number: 451,
+        name: "第六期好員工票選",
+        situation: "已結束",
+        dateStart: "2023/02/05",
+        dateEnd: "2024/06/02",
+        result: "前往"
+      },
+      {
+        number: 452,
+        name: "會議參加統計",
+        situation: "已結束",
+        dateStart: "2023/02/05",
+        dateEnd: "2024/06/02",
+        result: "前往"
+      }
+      ]
+    };
+  },
+  methods: {
 
+  },
+};
 </script>
 
 <template>
@@ -26,18 +107,19 @@
         <td> 結束時間 </td>
         <td> 結果 </td>
       </tr>
-      <tr>
-        <td> #444 </td>
-        <td> 購買頃項市調 </td>
-        <td> 尚未開始 </td>
-        <td> 2023/11/12 </td>
-        <td> 2024/5/2 </td>
-        <td> 前往 </td>
+      <tr v-for="item in this.pageArray">
+        <td> {{ item.number }} </td>
+        <td> {{ }} <RouterLink to="/InsidePage">{{ item.name }}</RouterLink>
+        </td>
+        <td>{{ item.situation }}</td>
+        <td>{{ item.dateStart }}</td>
+        <td>{{ item.dateEnd }}</td>
+        <td>{{ item.result }}</td>
       </tr>
-      <tr>
+      <!--  <tr>
         <td> #445 </td>
         <td>
-          <RouterLink to="/InsidePage">青春洋溢高中生</RouterLink>
+           <RouterLink to="/InsidePage">青春洋溢高中生</RouterLink>
         </td>
         <td> 進行中 </td>
         <td> 2023/12/5 </td>
@@ -101,7 +183,7 @@
         <td> 2024/2/5 </td>
         <td> 2024/6/2 </td>
         <td> 前往 </td>
-      </tr>
+      </tr>  -->
     </table>
   </div>
   <div class="page">
