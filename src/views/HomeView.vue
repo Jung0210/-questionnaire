@@ -114,7 +114,8 @@ export default {
         <td>{{ item.situation }}</td>
         <td>{{ item.dateStart }}</td>
         <td>{{ item.dateEnd }}</td>
-        <td>{{ item.result }}</td>
+        <td>{{ }} <RouterLink to="/StatisticPage">{{ item.result }}</RouterLink>
+        </td>
       </tr>
       <!--  <tr>
         <td> #445 </td>
@@ -202,25 +203,26 @@ body {
 }
 
 .searchArea {
-  width: 1500px;
+  width: 800px;
   height: 150px;
   border: 1px solid rgb(0, 0, 0);
   display: flex;
   flex-direction: column;
   justify-content: space-around;
   align-items: center;
+  margin-left: 300px;
 
   .enter {
-    width: 1300px;
+    width: 600px;
     height: 60px;
     border: 1px solid rgb(0, 0, 0);
-    padding-top: 5px;
     display: flex;
-    padding-top: 10px;
+    padding-top: 15px;
+
 
     input {
-      width: 50%;
-      height: 60%;
+      width: 70%;
+      height: 80%;
     }
 
     .word {
@@ -233,7 +235,7 @@ body {
   }
 
   .time {
-    width: 1300px;
+    width: 600px;
     height: 60px;
     border: 1px solid rgb(0, 0, 0);
     font-size: 20px;
@@ -264,6 +266,7 @@ body {
     height: 500px;
     border: 1px solid rgb(0, 0, 0);
     text-align: center;
+    background-color: rgb(245, 255, 136);
   }
 }
 
@@ -275,5 +278,6 @@ body {
   margin-left: 380px;
   margin-top: 15px;
   padding-left: 200px;
+  background-color: rgb(227, 255, 181);
 }
 </style>
