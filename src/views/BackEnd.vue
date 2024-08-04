@@ -1,5 +1,41 @@
 <script>
+export default {
+    data() {
+        return {
+            pageArray: [{
+                id: "square1",
+                number: 444,
+                name: "購買傾項市調",
+                situation: "尚未開始",
+                dateStart: "2023/11/12",
+                dateEnd: "2024/05/02",
+                result: "前往",
+            },
+            {
+                id: "square2",
+                number: 445,
+                name: "青春洋溢高中生",
+                situation: "進行中",
+                dateStart: "2023/12/05",
+                dateEnd: "2024/03/02",
+                result: "前往",
+            },
+            {
+                id: "square3",
+                number: 446,
+                name: "尾牙餐廳預選",
+                situation: "已結束",
+                dateStart: "2023/01/05",
+                dateEnd: "2024/06/02",
+                result: "前往",
+            }
+            ]
+        };
+    },
+    methods: {
 
+    },
+};
 </script>
 
 <template>
@@ -27,6 +63,7 @@
     <div class="Group18">
         <table class="box">
             <tr>
+                <td> </td>
                 <td> 編號 </td>
                 <td> 名稱 </td>
                 <td> 狀態 </td>
@@ -34,77 +71,18 @@
                 <td> 結束時間 </td>
                 <td> 結果 </td>
             </tr>
-            <tr>
-                <td> #444 </td>
-                <td> 購買頃項市調 </td>
-                <td> 尚未開始 </td>
-                <td> 2023/11/12 </td>
-                <td> 2024/5/2 </td>
-                <td> 前往 </td>
-            </tr>
-            <tr>
-                <td> #445 </td>
-                <td> 青春洋溢高中生 </td>
-                <td> 進行中 </td>
-                <td> 2023/12/5 </td>
-                <td> 2024/3/2 </td>
-                <td> 前往 </td>
-            </tr>
-            <tr>
-                <td> #446 </td>
-                <td> 尾牙餐廳預選 </td>
-                <td> 已結束 </td>
-                <td> 2023/1/5 </td>
-                <td> 2023/6/2 </td>
-                <td> 前往 </td>
-            </tr>
-            <tr>
-                <td> #447 </td>
-                <td> 中秋禮盒預選 </td>
-                <td> 已結束 </td>
-                <td> 2023/3/5 </td>
-                <td> 2023/7/2 </td>
-                <td> 前往 </td>
-            </tr>
-            <tr>
-                <td> #448 </td>
-                <td> 購買傾項市調 </td>
-                <td> 已結束 </td>
-                <td> 2023/5/5 </td>
-                <td> 2023/8/2 </td>
-                <td> 前往 </td>
-            </tr>
-            <tr>
-                <td> #449 </td>
-                <td> 最佳員工 </td>
-                <td> 已結束 </td>
-                <td> 2024/3/5 </td>
-                <td> 2024/7/2 </td>
-                <td> 前往 </td>
-            </tr>
-            <tr>
-                <td> #450 </td>
-                <td> 大會參加統計 </td>
-                <td> 已結束 </td>
-                <td> 2024/2/5 </td>
-                <td> 2024/6/2 </td>
-                <td> 前往 </td>
-            </tr>
-            <tr>
-                <td> #451 </td>
-                <td> 第六期好員工票選 </td>
-                <td> 已結束 </td>
-                <td> 2024/2/5 </td>
-                <td> 2024/6/2 </td>
-                <td> 前往 </td>
-            </tr>
-            <tr>
-                <td> #452 </td>
-                <td> 會議參加統計 </td>
-                <td> 已結束 </td>
-                <td> 2024/2/5 </td>
-                <td> 2024/6/2 </td>
-                <td> 前往 </td>
+            <tr v-for="item in this.pageArray">
+                <!-- v-bind是會把裡面的東西涉為變數 -->
+                <td><input type="checkbox" :id="item.id"></td>
+
+                <td> {{ item.number }} </td>
+                <td> {{}} <RouterLink to="/BackEndInsidePage">{{ item.name }}</RouterLink>
+                </td>
+                <td>{{ item.situation }}</td>
+                <td>{{ item.dateStart }}</td>
+                <td>{{ item.dateEnd }}</td>
+                <td>{{}} <RouterLink to="/StatisticPage">{{ item.result }}</RouterLink>
+                </td>
             </tr>
         </table>
     </div>
