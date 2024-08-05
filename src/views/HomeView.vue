@@ -95,7 +95,7 @@ body {
   flex-direction: column;
   justify-content: space-around;
   align-items: center;
-  margin-left: 500px;
+  margin-left: 400px;
   margin-top: 50px;
 
   .enter {
@@ -104,15 +104,18 @@ body {
     border: 1px solid rgb(0, 0, 0);
     display: flex;
     padding-top: 15px;
+    padding-left: 20px;
 
 
     input {
       width: 70%;
-      height: 80%;
+      height: 60%;
+      margin-top: 1px;
+      margin-left: 2px;
     }
 
     .word {
-      font-size: 50px;
+      font-size: 40px;
     }
 
     .tree {
@@ -124,19 +127,21 @@ body {
     width: 500px;
     height: 60px;
     border: 1px solid rgb(0, 0, 0);
-    font-size: 20px;
     padding-top: 5px;
     display: flex;
     padding-top: 15px;
+    font-size: 20px;
 
     input {
       width: 30%;
       height: 50%;
+      font-size: 15px;
     }
 
     button {
       width: 10%;
       height: 60%;
+      margin-left: 20px;
     }
   }
 }

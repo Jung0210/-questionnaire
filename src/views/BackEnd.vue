@@ -72,7 +72,7 @@ export default {
                 <td> 結果 </td>
             </tr>
             <tr v-for="item in this.pageArray">
-                <!-- v-bind是會把裡面的東西涉為變數 -->
+                <!-- v-bind是會把裡面的東西設為變數 -->
                 <td><input type="checkbox" :id="item.id"></td>
 
                 <td> {{ item.number }} </td>
@@ -111,7 +111,7 @@ body {
     align-items: center;
 
     .enter {
-        width: 1300px;
+        width: 500px;
         height: 60px;
         border: 1px solid rgb(0, 0, 0);
         padding-top: 5px;
@@ -133,7 +133,7 @@ body {
     }
 
     .time {
-        width: 1300px;
+        width: 500px;
         height: 60px;
         border: 1px solid rgb(0, 0, 0);
         font-size: 20px;
@@ -154,15 +154,16 @@ body {
 }
 
 .star {
-    width: 300px;
+    width: 150px;
     height: 50px;
     border: 1px solid rgb(0, 0, 0);
     display: flex;
     justify-content: space-evenly;
     margin-top: 30px;
+    margin-left: 500px;
 
     .star1 {
-        width: 80px;
+        width: 60px;
         height: 50px;
         border: 1px solid rgb(0, 0, 0);
         font-size: 40px;
@@ -170,7 +171,7 @@ body {
     }
 
     .star2 {
-        width: 80px;
+        width: 60px;
         height: 50px;
         border: 1px solid rgb(0, 0, 0);
         font-size: 40px;
@@ -179,15 +180,16 @@ body {
 }
 
 .Group18 {
-    width: 1500px;
-    height: 500px;
+    width: 600px;
+    height: 300px;
     border: 1px solid rgb(0, 0, 0);
     margin-top: 30px;
+    margin-left: 450px;
 
 
     .box {
-        width: 1500px;
-        height: 500px;
+        width: 600px;
+        height: 300px;
         border: 1px solid rgb(0, 0, 0);
         text-align: center;
     }
