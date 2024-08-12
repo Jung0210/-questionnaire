@@ -15,7 +15,7 @@ export default {
                 id: "square2",
                 number: 445,
                 name: "青春洋溢高中生",
-                situation: "進行中",
+                situation: "開放中",
                 dateStart: "2023/12/05",
                 dateEnd: "2024/03/02",
                 result: "前往",
@@ -24,7 +24,7 @@ export default {
                 id: "square3",
                 number: 446,
                 name: "尾牙餐廳預選",
-                situation: "已結束",
+                situation: "已關閉",
                 dateStart: "2023/01/05",
                 dateEnd: "2024/06/02",
                 result: "前往",
@@ -33,7 +33,10 @@ export default {
         };
     },
     methods: {
-
+        goToNextPage() {
+            // 使用 Vue Router 的 push 方法導航到 /next 頁面
+            this.$router.push(' <RouterLink to="/BackEndInsidePage">BackEndInsidePage</RouterLink>');
+        }
     },
 };
 </script>
@@ -57,7 +60,7 @@ export default {
             <i class="fa-solid fa-trash"></i>
         </div>
         <div class="star2">
-            <i class="fa-solid fa-plus"></i>
+            <i class="fa-solid fa-plus" @click="goToNextPage" style="cursor: pointer;"></i>
         </div>
     </div>
     <div class="Group18">
