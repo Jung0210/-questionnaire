@@ -35,7 +35,7 @@ export default {
     methods: {
         goToNextPage() {
             // 使用 Vue Router 的 push 方法導航到 /next 頁面
-            this.$router.push(' <RouterLink to="/BackEndInsidePage">BackEndInsidePage</RouterLink>');
+            this.$router.push('/BackEndInsidePage');
         }
     },
 };
@@ -61,6 +61,7 @@ export default {
         </div>
         <div class="star2">
             <i class="fa-solid fa-plus" @click="goToNextPage" style="cursor: pointer;"></i>
+            <!-- style="cursor: pointer 它會把滑鼠游標變成手的形狀 -->
         </div>
     </div>
     <div class="Group18">

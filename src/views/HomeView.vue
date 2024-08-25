@@ -157,7 +157,6 @@ export default {
   <div class="page">
     <a @click.prevent="prevPage" :disabled="currentPage === 1">&lt;</a>
     <a href="" v-for="page in totalPages" :key="page" @click.prevent="goToPage(page)">
-
       {{ page }}
     </a>
     <a @click.prevent="nextPage" :disabled="currentPage === totalPages">&gt;</a>

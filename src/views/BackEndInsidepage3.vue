@@ -10,7 +10,7 @@
         <div class="circle2">
             <p>題目</p>
         </div>
-        <div class="circle3">
+        <div class="circle3" :class="{ 'bgColor': this.$route.path == '/BackEndInsidePage3' }">
             <p>問卷回饋</p>
         </div>
         <div class="circle4">
@@ -130,6 +130,10 @@ body {
             background-color: rgb(255, 255, 255);
         }
 
+    }
+
+    .bgColor {
+        background-color: white;
     }
 }
 

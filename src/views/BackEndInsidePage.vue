@@ -1,10 +1,26 @@
 <script>
+export default {
+    data() {
+        return {
 
+        };
+    },
+    methods: {
+        goToQuestionPage() {
+            // 使用 Vue Router 的 push 方法導航到 /next 頁面
+            this.$router.push('BackEndInsidePage2');
+        },
+        goToBackEndPage() {
+            // 使用 Vue Router 的 push 方法導航到 /next 頁面
+            this.$router.push('BacKEnd');
+        },
+    }
+}
 </script>
 
 <template>
     <div class="Group0">
-        <div class="circle1">
+        <div class="circle1" :class="{ 'bgColor': this.$route.path == '/BackEndInsidePage' }">
             <p>問卷</p>
         </div>
         <div class="circle2">
@@ -42,10 +58,10 @@
         </div>
         <div class="Group2">
             <div class="bean1">
-                <button class="Cancel">取消</button>
+                <button @click="goToBackEndPage" class="Cancel">取消</button>
             </div>
             <div class="bean2">
-                <button class="next">下一步</button>
+                <button @click="goToQuestionPage" class="next">下一步</button>
             </div>
         </div>
     </div>
@@ -68,6 +84,7 @@ body {
     display: flex;
     margin-left: 200px;
     margin-top: 40px;
+
 
     .circle1 {
         width: 150px;
@@ -130,6 +147,10 @@ body {
         }
 
     }
+
+    .bgColor {
+        background-color: white;
+    }
 }
 
 .Group1 {
@@ -160,7 +181,7 @@ body {
             padding-right: 100px;
 
             input {
-                width: 500px;
+                width: 700px;
                 height: 60px;
             }
         }
