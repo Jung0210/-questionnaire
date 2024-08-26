@@ -10,7 +10,9 @@ export default {
                 require: false,
             },
             isEdit: false,//boolean false是編輯
+
             questions: [],// 存儲所有問題
+
             editingIndex: null // 記錄正在編輯的問題的索引
 
         };
@@ -65,7 +67,11 @@ export default {
         deleteQuestion(index) {
             this.questions.splice(index, 1);
         },
+        previewQuestions() {
+            this.$router.push({ name: 'ConfirmationPage' });
+        },
     },
+
 }
 </script>
 
@@ -122,6 +128,9 @@ export default {
                 <button @click="addQuestion" v-if="!isEdit">加入</button>
                 <button @click="updateQuestion" v-if="isEdit">編輯</button>
             </div>
+            <div class="oval22">
+                <button @click="previewQuestions">預覽</button><!--新增預覽按鈕-->
+            </div>
         </div>
         <div class="Group4">
             <div class="box1">
@@ -173,6 +182,10 @@ export default {
             </div>
         </div>
     </div>
+
+
+
+
 </template>
 <style scoped lang="scss">
 * {
@@ -391,6 +404,22 @@ body {
         margin-top: -96px;
         border-radius: 10px;
 
+
+        button {
+            width: 80px;
+            height: 50px;
+            font-size: 25px;
+            border-radius: 10px;
+        }
+
+    }
+
+    .oval22 {
+        width: 80px;
+        height: 50px;
+        display: flex;
+        margin-left: 895px;
+        margin-top: 160px;
 
         button {
             width: 80px;

@@ -4,11 +4,10 @@
 
 <template>
     <div class="first">
-        <p>青春洋溢高中生人氣投票戰</p>
+
     </div>
     <div class="shape">
-        <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Recusandae tempora eos dolores labore cupiditate
-            fuga iure, inventore harum voluptas nostrum, rem animi eaque minima atque sit velit expedita. Vero, non.</p>
+
     </div>
     <div class="container">
         <div class="chocolate">
@@ -41,16 +40,27 @@
         </div>
     </div>
     <div class="Group15">
+
         <div class="team">
-            <p>請選取最喜歡的人(必填)</p>
+            <input type="question" name="" id="">
         </div>
         <div class="team1">
-            <input type="word" name="myfield" id="">
+            <input type="checkbox" id="" name=""></input>
         </div>
+        <div class="team2">
+            <input type="checkbox" id="" name=""></input>
+        </div>
+        <div class="team3">
+            <input type="checkbox" id="" name=""></input>
+        </div>
+        <div class="team4">
+            <input type="checkbox" id="" name=""></input>
+        </div>
+
     </div>
     <div class="Group13">
         <div class="area">
-            <p>請說明理由</p>
+            <input type="text">
         </div>
         <div class="area1">
             <textarea name="" id=""></textarea>
@@ -61,16 +71,19 @@
     </div>
     <div class="Group12">
         <div class="bee">
-            <p>3.請選取在活動開始前有聽過的人(必填)</p>
+            <input type="text">
         </div>
         <div class="bee1">
-            <input type="" id="" name=""></input>
+            <input type="checkbox" id="" name=""></input>
         </div>
         <div class="bee2">
-            <input type="" id="" name=""></input>
+            <input type="checkbox" id="" name=""></input>
         </div>
         <div class="bee3">
-            <input type="" id="" name=""></input>
+            <input type="checkbox" id="" name=""></input>
+        </div>
+        <div class="bee4">
+            <input type="checkbox" id="" name=""></input>
         </div>
     </div>
     <div class="Group10">
@@ -205,23 +218,31 @@ body {
 }
 
 .Group15 {
-    width: 400px;
-    height: 100px;
+    width: 500px;
+    height: 250px;
     border: 1px solid rgb(0, 0, 0);
-    display: flex;
-    flex-direction: column;
-    margin-top: 15px;
+    margin-top: 30px;
     margin-left: 300px;
+    display: flex;
+    // justify-content: space-around;
+    flex-direction: column;
+    text-align: left;
 
     .team {
-        width: 400px;
-        height: 40px;
+        width: 450px;
+        height: 50px;
         border: 1px solid rgb(0, 0, 0);
+        padding-top: 5px;
+
+        input {
+            width: 395px;
+            height: 30px;
+        }
     }
 
     .team1 {
-        width: 400px;
-        height: 100px;
+        width: 450px;
+        height: 50px;
         border: 1px solid rgb(0, 0, 0);
         padding-top: 10px;
         justify-content: center;
@@ -229,16 +250,67 @@ body {
         justify-content: space-between;
 
         input {
-            width: 3300px;
-            height: 35px;
+            width: 40px;
+            height: 20px;
             border: 1px solid rgb(0, 0, 0);
         }
     }
+
+    .team2 {
+        width: 450px;
+        height: 50px;
+        border: 1px solid rgb(0, 0, 0);
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+
+        input {
+            width: 40px;
+            height: 20px;
+            border: 1px solid rgb(0, 0, 0);
+            margin-top: 10px;
+        }
+    }
+
+    .team3 {
+        width: 450px;
+        height: 50px;
+        border: 1px solid rgb(0, 0, 0);
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+
+        input {
+            width: 40px;
+            height: 20px;
+            border: 1px solid rgb(0, 0, 0);
+            margin-top: 10px;
+        }
+
+    }
+
+    .team4 {
+        width: 450px;
+        height: 50px;
+        border: 1px solid rgb(0, 0, 0);
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+
+        input {
+            width: 40px;
+            height: 20px;
+            border: 1px solid rgb(0, 0, 0);
+            margin-top: 10px;
+        }
+
+    }
+
 }
 
 .Group13 {
     width: 400px;
-    height: 120px;
+    height: 200px;
     border: 1px solid rgb(0, 0, 0);
     display: flex;
     flex-direction: column;
@@ -246,9 +318,15 @@ body {
     margin-left: 300px;
 
     .area {
-        width: 400px;
+        width: 800px;
         height: 40px;
         text-align: left;
+
+        .input {
+            width: 800px;
+            height: 60px;
+        }
+
 
         p {
             font-size: 18px;
@@ -257,7 +335,7 @@ body {
     }
 
     .area1 {
-        width: 398px;
+        width: 400px;
         height: 190px;
         padding-top: 10px;
         border: 1px solid rgb(0, 0, 0);
@@ -266,8 +344,8 @@ body {
         justify-content: space-between;
 
         textarea {
-            width: 350px;
-            height: 70px;
+            width: 385px;
+            height: 150px;
             border: 1px solid rgb(0, 0, 0);
             resize: none;
             position: absolute;
@@ -285,7 +363,7 @@ body {
     margin-top: 30px;
     margin-left: 300px;
     display: flex;
-    justify-content: space-around;
+    // justify-content: space-around;
     flex-direction: column;
     text-align: left;
 
@@ -293,21 +371,28 @@ body {
         width: 450px;
         height: 50px;
         border: 1px solid rgb(0, 0, 0);
+        padding-top: 8px;
+
+        input {
+            width: 399px;
+            height: 35px;
+        }
     }
 
     .bee1 {
         width: 450px;
         height: 50px;
         border: 1px solid rgb(0, 0, 0);
-        display: flex;
-        justify-content: space-between;
-        align-items: center;
+        justify-content: left;
+        // display: flex;
+
 
 
         input {
-            width: 350px;
-            height: 35px;
+            width: 40px;
+            height: 20px;
             border: 1px solid rgb(0, 0, 0);
+            margin-top: 10px;
         }
 
     }
@@ -321,9 +406,10 @@ body {
         align-items: center;
 
         input {
-            width: 350px;
-            height: 35px;
+            width: 40px;
+            height: 20px;
             border: 1px solid rgb(0, 0, 0);
+            margin-top: 10px;
         }
     }
 
@@ -336,10 +422,28 @@ body {
         align-items: center;
 
         input {
-            width: 350px;
-            height: 35px;
+            width: 40px;
+            height: 20px;
             border: 1px solid rgb(0, 0, 0);
+            margin-top: 10px;
         }
+    }
+
+    .bee4 {
+        width: 450px;
+        height: 50px;
+        border: 1px solid rgb(0, 0, 0);
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+
+        input {
+            width: 40px;
+            height: 20px;
+            border: 1px solid rgb(0, 0, 0);
+            margin-top: 10px;
+        }
+
     }
 
 }

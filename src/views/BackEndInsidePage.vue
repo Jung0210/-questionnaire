@@ -34,12 +34,12 @@ export default {
         </div>
     </div>
     <div class="Group1">
-        <div class="oval0">
-            <div class="oval1">
-                <p>問卷名稱:</p>
-                <input type="text">
-            </div>
+        <!-- <div class="oval0"> -->
+        <div class="oval1">
+            <p>問卷名稱:</p>
+            <input type="text">
         </div>
+        <!-- </div> -->
         <!-- <div class="oval1">
             <p>問卷名稱:</p>
             <input type="text">
@@ -170,20 +170,21 @@ body {
         display: flex;
         flex-direction: column;
 
-        .oval1 {
-            width: 900px;
-            height: 100px;
-            // border: 1px solid rgb(0, 0, 0);
-            display: flex;
-            justify-content: center;
-            align-items: center;
-            font-size: 30px;
-            padding-right: 100px;
+    }
 
-            input {
-                width: 700px;
-                height: 60px;
-            }
+    .oval1 {
+        width: 900px;
+        height: 100px;
+        // border: 1px solid rgb(0, 0, 0);
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        font-size: 30px;
+        // padding-right: 100px;
+
+        input {
+            width: 599px;
+            height: 60px;
         }
     }
 
