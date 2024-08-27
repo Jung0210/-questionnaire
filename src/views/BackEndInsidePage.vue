@@ -2,12 +2,29 @@
 export default {
     data() {
         return {
+            data: {
+                name: '',
+                description: '',
+                startDate: '',
+                endDate: '',//
+                published: false,
+                quesList: []
+            },
+            // questionList:[],
 
+            // question: {
+            //     id: '',
+            //     qu: '',
+            //     type: '',
+            //     necessary: false,
+            //     options: '',
+            // }
         };
     },
     methods: {
         goToQuestionPage() {
             // 使用 Vue Router 的 push 方法導航到 /next 頁面
+            sessionStorage.setItem("quiz", JSON.stringify(this.data))
             this.$router.push('BackEndInsidePage2');
         },
         goToBackEndPage() {
@@ -37,7 +54,7 @@ export default {
         <!-- <div class="oval0"> -->
         <div class="oval1">
             <p>問卷名稱:</p>
-            <input type="text">
+            <input v-model="data.name" type="text">
         </div>
         <!-- </div> -->
         <!-- <div class="oval1">
@@ -46,16 +63,17 @@ export default {
         </div> -->
         <div class="oval2">
             <p>問卷說明:</p>
-            <textarea name="" id=""></textarea>
+            <textarea v-model="data.description" name="" id=""></textarea>
         </div>
         <div class="oval3">
             <p>開始時間:</p>
-            <input type="date" id="bookdate" name="">
+            <input v-model="data.startDate" type="date" id="bookdate">
         </div>
         <div class="oval4">
             <p>結束時間:</p>
-            <input type="date" id="bookdate" name="">
+            <input v-model="data.endDate" type="date" id="bookdate" name="">
         </div>
+        <!-- <h1>{{ data }}</h1> -->
         <div class="Group2">
             <div class="bean1">
                 <button @click="goToBackEndPage" class="Cancel">取消</button>

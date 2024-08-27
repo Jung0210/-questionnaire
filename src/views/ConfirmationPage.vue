@@ -1,13 +1,51 @@
 <script>
+export default {
+    data() {
+        return {
+            quid: 1,
+            newQuestion: {
+                text: '',
+                type: "single",
+                options: '',
+                require: false,
+            },
+            isEdit: false,//boolean false是編輯
+            data: {},
+            // questions: [],// 存儲所有問題
 
+            editingIndex: null, // 記錄正在編輯的問題的索引
+
+            questionList: [],
+
+            question: {
+                id: '',
+                qu: '',
+                type: '',
+                necessary: false,
+                options: '',
+            }
+
+        };
+    },
+    mounted() {
+        const data = sessionStorage.getItem('quizData')
+        console.log(data)
+        if (data) {
+            this.data = JSON.parse(data)
+        }
+        console.log(data)
+
+    }
+}
 </script>
 
 <template>
     <div class="first">
-
+        <p>{{ data.name }}</p>
+        <!-- <p v-model="data.name"></p> -->
     </div>
     <div class="shape">
-
+        <p> {{ data.description }}</p>
     </div>
     <div class="container">
         <div class="chocolate">
@@ -41,8 +79,8 @@
     </div>
     <div class="Group15">
 
-        <div class="team">
-            <input type="question" name="" id="">
+        <div class="team" v-for="(item, index) in this.data.quesList">
+            <p>{{ item.qu }}</p>
         </div>
         <div class="team1">
             <input type="checkbox" id="" name=""></input>
@@ -60,7 +98,7 @@
     </div>
     <div class="Group13">
         <div class="area">
-            <input type="text">
+            <p></p>
         </div>
         <div class="area1">
             <textarea name="" id=""></textarea>
@@ -71,7 +109,7 @@
     </div>
     <div class="Group12">
         <div class="bee">
-            <input type="text">
+            <p></p>
         </div>
         <div class="bee1">
             <input type="checkbox" id="" name=""></input>
@@ -88,10 +126,10 @@
     </div>
     <div class="Group10">
         <div class="egg1">
-            <button class="Cancel">修改</button>
+            <button class="Cancel">僅儲存</button>
         </div>
         <div class="egg2">
-            <button class="send">送出</button>
+            <button class="send">儲存並發布</button>
         </div>
     </div>
 </template>

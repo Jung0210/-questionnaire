@@ -3,6 +3,7 @@ import axios from 'axios';
 export default {
     data() {
         return {
+            quid: 1,
             newQuestion: {
                 text: '',
                 type: "single",
@@ -10,26 +11,47 @@ export default {
                 require: false,
             },
             isEdit: false,//boolean false是編輯
+            data: [],
+            // questions: [],// 存儲所有問題
 
-            questions: [],// 存儲所有問題
+            editingIndex: null, // 記錄正在編輯的問題的索引
 
-            editingIndex: null // 記錄正在編輯的問題的索引
+            questionList: [],
+
+            question: {
+                id: '',
+                qu: '',
+                type: '',
+                necessary: false,
+                options: '',
+            }
 
         };
     },
+    mounted() {
+        const data = sessionStorage.getItem('quiz')
+        // console.log(this.data)
+        if (data) {
+            this.data = JSON.parse(data)
+        }
+        // console.log(this.data)
+
+    },
     methods: {
         addQuestion() {
-            if (this.newQuestion.text) {
-                if (this.newQuestion.type !== 'short' && !this.newQuestion.options) {
+            if (this.question.qu) {
+                if (this.question.type !== 'short' && !this.question.options) {
                     alert('請輸入選項');
                     return;
                 }
-                this.questions.push({ ...this.newQuestion });//把新增的問題增加到陣列裡
+                this.question.id = this.quid
+                this.questionList.push({ ...this.question });//把新增的問題增加到陣列裡
                 //重置問題
-                this.newQuestion.text = '';
-                this.newQuestion.type = 'single';
-                this.newQuestion.options = '';
-                this.newQuestion.require = false;
+                this.question.qu = '';
+                this.question.type = 'single';
+                this.question.options = '';
+                this.question.necessary = false;
+                this.quid++
             } else {
                 alert('請輸入問題');
             }
@@ -37,17 +59,17 @@ export default {
         // 設置編輯模式
         editQuestion(index) {
             this.isEdit = true;
-            if (index >= 0 && index < this.questions.length) {
+            if (index >= 0 && index < this.questionList.length) {
                 this.editingIndex = index;
-                this.newQuestion = { ...this.questions[index] };
+                this.question = { ...this.questionList[index] };
             } else {
                 alert('無效的問題索引');
             }
         },
         // 更新問題
         updateQuestion() {
-            if (this.editingIndex !== null && this.newQuestion.text) {
-                this.questions[this.editingIndex] = { ...this.newQuestion };
+            if (this.editingIndex !== null && this.question.qu) {
+                this.questionList[this.editingIndex] = { ...this.question };
                 this.resetNewQuestion();
                 this.isEdit = false;
             }
@@ -55,19 +77,24 @@ export default {
         },
         // 重置問題填寫表單
         resetNewQuestion() {
-            this.newQuestion = {
-                text: '',
+            this.question = {
+                qu: '',
                 type: 'single',
                 options: '',
-                require: false,
+                necessary: false,
             };
             this.editingIndex = null;
         },
         // 刪除問題
         deleteQuestion(index) {
-            this.questions.splice(index, 1);
+            this.questionList.splice(index, 1);
         },
         previewQuestions() {
+            console.log(this.questionList)
+            console.log(this.data)
+            this.data.quesList = this.questionList
+            console.log(this.data)
+            sessionStorage.setItem('quizData', this.data)
             this.$router.push({ name: 'ConfirmationPage' });
         },
     },
@@ -97,17 +124,17 @@ export default {
                     <p>問題:</p>
                 </div>
                 <div class="oval14">
-                    <input v-model="newQuestion.text" type="text">
+                    <input v-model="question.qu" type="text">
                 </div>
                 <div class="oval15">
-                    <select v-model="newQuestion.type" name="list" id="chose">
+                    <select v-model="question.type" name="list" id="chose">
                         <option value="single">單選題</option>
                         <option value="multiple">複選題</option>
                         <option value="short">短述題</option>
                     </select>
                 </div>
                 <div class="oval16">
-                    <input v-model="newQuestion.require" type="checkbox" id=" fill" />
+                    <input v-model="question.necessary" type="checkbox" id=" fill" />
                     <label for="fill" class="fit">必填</label>
                 </div>
             </div>
@@ -122,14 +149,12 @@ export default {
                 </div>
             </div>
             <div class="oval20">
-                <textarea name="" id=" " v-model="newQuestion.options"></textarea>
+                <textarea name="" id=" " v-model="question.options"></textarea>
             </div>
+            <h1>{{ question }}</h1>
             <div class="oval21">
                 <button @click="addQuestion" v-if="!isEdit">加入</button>
                 <button @click="updateQuestion" v-if="isEdit">編輯</button>
-            </div>
-            <div class="oval22">
-                <button @click="previewQuestions">預覽</button><!--新增預覽按鈕-->
             </div>
         </div>
         <div class="Group4">
@@ -143,10 +168,10 @@ export default {
                         <td> 必填</td>
                         <td>編輯</td>
                     </tr>
-                    <tr v-for="(question, index) in questions" :key="index">
+                    <tr v-for="(question, index) in questionList" :key="index">
                         <td><input type="checkbox" /></td>
                         <td>{{ index + 1 }}</td>
-                        <td> {{ question.text }}</td>
+                        <td> {{ question.qu }}</td>
                         <td>{{ question.type }}</td>
                         <td> <input type="checkbox" :checked="question.require" disabled /> </td>
                         <td>
@@ -178,7 +203,7 @@ export default {
                 <button class="pre">上一步</button>
             </div>
             <div class="lineright">
-                <button class="send">送出</button>
+                <button @click="previewQuestions" class="send">送出</button>
             </div>
         </div>
     </div>
