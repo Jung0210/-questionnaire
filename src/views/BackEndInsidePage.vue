@@ -6,7 +6,7 @@ export default {
                 name: '',
                 description: '',
                 startDate: '',
-                endDate: '',//
+                endDate: '',//這些是java裡quiz的東西
                 published: false,
                 quesList: []
             },

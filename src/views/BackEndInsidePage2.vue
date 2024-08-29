@@ -94,7 +94,7 @@ export default {
             console.log(this.data)
             this.data.quesList = this.questionList
             console.log(this.data)
-            sessionStorage.setItem('quizData', this.data)
+            sessionStorage.setItem('quizData', JSON.stringify(this.data))
             this.$router.push({ name: 'ConfirmationPage' });
         },
     },
@@ -127,7 +127,7 @@ export default {
                     <input v-model="question.qu" type="text">
                 </div>
                 <div class="oval15">
-                    <select v-model="question.type" name="list" id="chose">
+                    <select v-model="question.type" name="" id="chose">
                         <option value="single">單選題</option>
                         <option value="multiple">複選題</option>
                         <option value="short">短述題</option>
@@ -151,7 +151,7 @@ export default {
             <div class="oval20">
                 <textarea name="" id=" " v-model="question.options"></textarea>
             </div>
-            <h1>{{ question }}</h1>
+            <!-- <h1>{{ question }}</h1> -->
             <div class="oval21">
                 <button @click="addQuestion" v-if="!isEdit">加入</button>
                 <button @click="updateQuestion" v-if="isEdit">編輯</button>
@@ -161,7 +161,7 @@ export default {
             <div class="box1">
                 <table class="box2">
                     <tr>
-                        <td></td>
+
                         <td>編號</td>
                         <td>內容</td>
                         <td>問題種類</td>
@@ -169,11 +169,11 @@ export default {
                         <td>編輯</td>
                     </tr>
                     <tr v-for="(question, index) in questionList" :key="index">
-                        <td><input type="checkbox" /></td>
+                        <!-- <td><input type="checkbox" /></td> -->
                         <td>{{ index + 1 }}</td>
                         <td> {{ question.qu }}</td>
                         <td>{{ question.type }}</td>
-                        <td> <input type="checkbox" :checked="question.require" disabled /> </td>
+                        <td> <input type="checkbox" :checked="question.necessary" disabled /> </td>
                         <td>
                             <a @click="editQuestion(index)">編輯</a>
                         </td>

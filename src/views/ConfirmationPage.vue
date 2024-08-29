@@ -27,11 +27,51 @@ export default {
 
         };
     },
+    methods: {
+        async saveData() {
+            try {
+                this.data.quesList.forEach(item => {
+                    item.options = item.options.join(";")
+                })
+                console.log(this.data)
+                const response = await fetch('http://localhost:8080/quiz/create', { // 替换成你的后端API地址
+                    method: 'POST',
+                    headers: {
+                        'Content-Type': 'application/json',
+                    },
+                    body: JSON.stringify(this.data), // 将this.data转为JSON字符串发送
+                });
+                if (response.ok) {
+                    console.log('数据保存成功！');
+                    // 处理成功响应（例如，显示成功消息）
+                } else {
+                    console.error('保存数据失败。');
+                    // 处理失败响应（例如，显示错误消息）
+                }
+            } catch (error) {
+                console.error('发生错误：', error);
+                // 处理网络或其他错误
+            }
+            this.back()
+        },
+        async saveAndPublish() {
+            this.data.published = true; // 添加一个标记或属性表示发布
+            await this.saveData();
+        },
+        back() {
+            // 使用 Vue Router 的 push 方法導航到 /next 頁面
+            this.$router.push('/BackEnd');
+        }
+    },
+
     mounted() {
         const data = sessionStorage.getItem('quizData')
         console.log(data)
         if (data) {
             this.data = JSON.parse(data)
+            this.data.quesList.forEach(item => {
+                item.options = item.options.split(";")
+            })
         }
         console.log(data)
 
@@ -42,11 +82,12 @@ export default {
 <template>
     <div class="first">
         <p>{{ data.name }}</p>
-        <!-- <p v-model="data.name"></p> -->
     </div>
+
     <div class="shape">
         <p> {{ data.description }}</p>
     </div>
+
     <div class="container">
         <div class="chocolate">
             <div class="box">
@@ -64,7 +105,7 @@ export default {
         </div>
         <div class="enter">
             <div class="line">
-                <input type="one">
+                <input v-model="question.qu" type="one">
             </div>
             <div class="line1">
                 <input type="one">
@@ -77,56 +118,41 @@ export default {
             </div>
         </div>
     </div>
+
     <div class="Group15">
 
-        <div class="team" v-for="(item, index) in this.data.quesList">
+        <div class="team" v-for="(item, index) in this.data.quesList" :key="index">
             <p>{{ item.qu }}</p>
-        </div>
-        <div class="team1">
-            <input type="checkbox" id="" name=""></input>
-        </div>
-        <div class="team2">
-            <input type="checkbox" id="" name=""></input>
-        </div>
-        <div class="team3">
-            <input type="checkbox" id="" name=""></input>
-        </div>
-        <div class="team4">
-            <input type="checkbox" id="" name=""></input>
-        </div>
 
-    </div>
-    <div class="Group13">
-        <div class="area">
-            <p></p>
-        </div>
-        <div class="area1">
-            <textarea name="" id=""></textarea>
-        </div>
-        <!-- <div class="area1">
-            <textarea class="charger" id="">51131</textarea>
-        </div> -->
-    </div>
-    <div class="Group12">
-        <div class="bee">
-            <p></p>
-        </div>
-        <div class="bee1">
-            <input type="checkbox" id="" name=""></input>
-        </div>
-        <div class="bee2">
-            <input type="checkbox" id="" name=""></input>
-        </div>
-        <div class="bee3">
-            <input type="checkbox" id="" name=""></input>
-        </div>
-        <div class="bee4">
-            <input type="checkbox" id="" name=""></input>
+            <div v-if="item.necessary">(必填)</div>
+
+
+            <div v-for=" (option, i) in item.options" :key="i">
+
+                <div v-if="item.type === 'single'" class="team1">
+                    <!---單選題,使用radio--->
+                    <input type="radio" :name="question">
+                    {{ option }}
+                </div>
+                <!-- v-for="(option,i) in this item.options" :key="i" -->
+
+                <div v-if="item.type === 'multiple'" class="team1">
+                    <!-- 多選題，使用 checkbox -->
+                    <input type="checkbox">
+                    {{ option }}
+                </div>
+
+                <div v-if="item.type === 'short'" class="team1">
+                    <!-- 短述題 -->
+                    <textarea></textarea>
+                    {{}}
+                </div>
+            </div>
         </div>
     </div>
     <div class="Group10">
         <div class="egg1">
-            <button class="Cancel">僅儲存</button>
+            <button @click="saveData" class="Cancel">僅儲存</button>
         </div>
         <div class="egg2">
             <button class="send">儲存並發布</button>
@@ -218,7 +244,7 @@ body {
     .enter {
         width: 1000px;
         height: 200px;
-        border: 1px solid rgb(0, 0, 0);
+        // border: 1px solid rgb(0, 0, 0);
         display: flex;
         flex-direction: column;
         justify-content: space-around;
@@ -257,93 +283,47 @@ body {
 
 .Group15 {
     width: 500px;
-    height: 250px;
-    border: 1px solid rgb(0, 0, 0);
+    // height: 250px;
+    // border: 1px solid rgb(0, 0, 0);
     margin-top: 30px;
     margin-left: 300px;
-    display: flex;
-    // justify-content: space-around;
-    flex-direction: column;
-    text-align: left;
+    // display: flex;
+    // flex-direction: column;
+    // text-align: left;
 
     .team {
-        width: 450px;
-        height: 50px;
-        border: 1px solid rgb(0, 0, 0);
-        padding-top: 5px;
+        width: 500px;
+        // height: 50px;
+        // border: 1px solid rgb(0, 0, 0);
+        padding-top: 50px;
+        // text-align: center;
+        justify-content: flex-start;
+
+
 
         input {
-            width: 395px;
-            height: 30px;
+            width: 20px;
+            display: flex;
+            flex-direction: column;
+            // text-align: left;
+
         }
     }
 
     .team1 {
-        width: 450px;
-        height: 50px;
+        width: 500px;
+
         border: 1px solid rgb(0, 0, 0);
-        padding-top: 10px;
-        justify-content: center;
+        // padding-top: 10px;
+        // justify-content: center;
         display: flex;
-        justify-content: space-between;
+        margin-top: auto;
 
-        input {
-            width: 40px;
-            height: 20px;
-            border: 1px solid rgb(0, 0, 0);
-        }
-    }
-
-    .team2 {
-        width: 450px;
-        height: 50px;
-        border: 1px solid rgb(0, 0, 0);
-        display: flex;
-        justify-content: space-between;
-        align-items: center;
-
-        input {
-            width: 40px;
-            height: 20px;
-            border: 1px solid rgb(0, 0, 0);
-            margin-top: 10px;
-        }
-    }
-
-    .team3 {
-        width: 450px;
-        height: 50px;
-        border: 1px solid rgb(0, 0, 0);
-        display: flex;
-        justify-content: space-between;
-        align-items: center;
-
-        input {
-            width: 40px;
-            height: 20px;
-            border: 1px solid rgb(0, 0, 0);
-            margin-top: 10px;
+        p {
+            text-align: center;
         }
 
     }
-
-    .team4 {
-        width: 450px;
-        height: 50px;
-        border: 1px solid rgb(0, 0, 0);
-        display: flex;
-        justify-content: space-between;
-        align-items: center;
-
-        input {
-            width: 40px;
-            height: 20px;
-            border: 1px solid rgb(0, 0, 0);
-            margin-top: 10px;
-        }
-
-    }
-
 }
 
 .Group13 {
@@ -352,7 +332,7 @@ body {
     border: 1px solid rgb(0, 0, 0);
     display: flex;
     flex-direction: column;
-    margin-top: 20px;
+    margin-top: 100px;
     margin-left: 300px;
 
     .area {
@@ -394,97 +374,97 @@ body {
     }
 }
 
-.Group12 {
-    width: 500px;
-    height: 250px;
-    border: 1px solid rgb(0, 0, 0);
-    margin-top: 30px;
-    margin-left: 300px;
-    display: flex;
-    // justify-content: space-around;
-    flex-direction: column;
-    text-align: left;
+// .Group12 {
+//     width: 500px;
+//     height: 250px;
+//     border: 1px solid rgb(0, 0, 0);
+//     margin-top: 30px;
+//     margin-left: 300px;
+//     display: flex;
+//     // justify-content: space-around;
+//     flex-direction: column;
+//     text-align: left;
 
-    .bee {
-        width: 450px;
-        height: 50px;
-        border: 1px solid rgb(0, 0, 0);
-        padding-top: 8px;
+//     // .bee {
+//     //     width: 450px;
+//     //     height: 50px;
+//     //     border: 1px solid rgb(0, 0, 0);
+//     //     padding-top: 8px;
 
-        input {
-            width: 399px;
-            height: 35px;
-        }
-    }
+//     //     input {
+//     //         width: 399px;
+//     //         height: 35px;
+//     //     }
+//     // }
 
-    .bee1 {
-        width: 450px;
-        height: 50px;
-        border: 1px solid rgb(0, 0, 0);
-        justify-content: left;
-        // display: flex;
+//     // .bee1 {
+//     //     width: 450px;
+//     //     height: 50px;
+//     //     border: 1px solid rgb(0, 0, 0);
+//     //     justify-content: left;
+//     //     // display: flex;
 
 
 
-        input {
-            width: 40px;
-            height: 20px;
-            border: 1px solid rgb(0, 0, 0);
-            margin-top: 10px;
-        }
+//     //     input {
+//     //         width: 40px;
+//     //         height: 20px;
+//     //         border: 1px solid rgb(0, 0, 0);
+//     //         margin-top: 10px;
+//     //     }
 
-    }
+//     // }
 
-    .bee2 {
-        width: 450px;
-        height: 50px;
-        border: 1px solid rgb(0, 0, 0);
-        display: flex;
-        justify-content: space-between;
-        align-items: center;
+//     // .bee2 {
+//     //     width: 450px;
+//     //     height: 50px;
+//     //     border: 1px solid rgb(0, 0, 0);
+//     //     display: flex;
+//     //     justify-content: space-between;
+//     //     align-items: center;
 
-        input {
-            width: 40px;
-            height: 20px;
-            border: 1px solid rgb(0, 0, 0);
-            margin-top: 10px;
-        }
-    }
+//     //     input {
+//     //         width: 40px;
+//     //         height: 20px;
+//     //         border: 1px solid rgb(0, 0, 0);
+//     //         margin-top: 10px;
+//     //     }
+//     // }
 
-    .bee3 {
-        width: 450px;
-        height: 50px;
-        border: 1px solid rgb(0, 0, 0);
-        display: flex;
-        justify-content: space-between;
-        align-items: center;
+//     // .bee3 {
+//     //     width: 450px;
+//     //     height: 50px;
+//     //     border: 1px solid rgb(0, 0, 0);
+//     //     display: flex;
+//     //     justify-content: space-between;
+//     //     align-items: center;
 
-        input {
-            width: 40px;
-            height: 20px;
-            border: 1px solid rgb(0, 0, 0);
-            margin-top: 10px;
-        }
-    }
+//     //     input {
+//     //         width: 40px;
+//     //         height: 20px;
+//     //         border: 1px solid rgb(0, 0, 0);
+//     //         margin-top: 10px;
+//     //     }
+//     // }
 
-    .bee4 {
-        width: 450px;
-        height: 50px;
-        border: 1px solid rgb(0, 0, 0);
-        display: flex;
-        justify-content: space-between;
-        align-items: center;
+//     // .bee4 {
+//     //     width: 450px;
+//     //     height: 50px;
+//     //     border: 1px solid rgb(0, 0, 0);
+//     //     display: flex;
+//     //     justify-content: space-between;
+//     //     align-items: center;
 
-        input {
-            width: 40px;
-            height: 20px;
-            border: 1px solid rgb(0, 0, 0);
-            margin-top: 10px;
-        }
+//     //     input {
+//     //         width: 40px;
+//     //         height: 20px;
+//     //         border: 1px solid rgb(0, 0, 0);
+//     //         margin-top: 10px;
+//     //     }
 
-    }
+//     // }
 
-}
+// }
 
 .Group10 {
     width: 400px;
