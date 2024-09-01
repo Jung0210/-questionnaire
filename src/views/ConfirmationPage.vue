@@ -23,8 +23,8 @@ export default {
                 type: '',
                 necessary: false,
                 options: '',
-            }
-
+            },
+            isEditing: false // 控制是否處於編輯模式
         };
     },
     methods: {
@@ -71,7 +71,7 @@ export default {
             this.data = JSON.parse(data)
             this.data.quesList.forEach(item => {
                 item.options = item.options.split(";")
-            })
+            });
         }
         console.log(data)
 

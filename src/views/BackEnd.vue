@@ -13,6 +13,15 @@ export default {
     },
     methods: {
         goToNextPage() {
+            // sessionStorage.setItem('quiz', JSON.stringify({
+            //     name: "",
+            //     description: "",
+            //     startDate: "",
+            //     endDate: "",
+            //     published: false,
+            //     quesList: []
+            // }));
+            sessionStorage.clear();
             // 使用 Vue Router 的 push 方法導航到 /next 頁面
             this.$router.push('/BackEndInsidePage');
         },
@@ -62,6 +71,22 @@ export default {
                 return '已结束';
             }
         },
+        editQuiz(item) {
+            // 将问卷数据存储到 Session Storage
+            sessionStorage.setItem('quizData', JSON.stringify({
+                name: item.name,
+                description: item.description,
+                startDate: item.startDate,
+                endDate: item.endDate,
+                published: item.published,
+                quesList: item.quesList
+            }));
+            // sessionStorage.getItem('quizData')
+            console.log(sessionStorage.getItem('quizData'));
+
+            this.$router.push('/BackEndInsidePage');
+        },
+
 
         async saveAndPublish() {
             this.data.published = true; // 添加一個標記或屬性表示發布
@@ -69,23 +94,27 @@ export default {
         },
         back() {
             // 使用 Vue Router 的 push 方法導航到 /next 頁面
+
             this.$router.push('/BackEnd');
+
         },
 
         deleteSelected() {
+            console.log(this.selectedQuizIds);
+
             if (this.selectedQuizIds.length === 0) {
                 alert('請選擇要刪除的項目');
                 return;
             }
             const confirmed = confirm('確定要刪除選中的項目嗎？');
             if (confirmed) {
-                // 发送删除请求
+                // 發送刪除請求
                 fetch('http://localhost:8080/quiz/delete', {
                     method: 'POST',
                     headers: {
                         'Content-Type': 'application/json',
                     },
-                    body: JSON.stringify({ ids: this.selectedQuizIds }),
+                    body: JSON.stringify({ quizIdList: this.selectedQuizIds }),
                 })
                     .then(response => {
                         if (response.ok) {
@@ -123,7 +152,7 @@ export default {
     </div>
     <div class="star">
         <div class="star1">
-            <i class="fa-solid fa-trash"></i>
+            <i class="fa-solid fa-trash" @click="deleteSelected" style="cursor: pointer;"></i>
         </div>
         <div class="star2">
             <i class="fa-solid fa-plus" @click="goToNextPage" style="cursor: pointer;"></i>
@@ -141,19 +170,21 @@ export default {
                 <td> 結束時間 </td>
                 <td> 結果 </td>
             </tr>
-            <tr v-for="item in this.quizList">
+            <tr v-for="item in this.quizList" :key="item.id">
                 <!-- v-bind是會把裡面的東西設為變數 -->
-                <td><input type="checkbox" :id="item.id"></td>
+                <td><input type="checkbox" v-model="selectedQuizIds" :id="item.id" :value="item.id"></td>
 
                 <td>{{ item.id }}</td>
-                <td> {{}} <RouterLink to="/BackEndInsidePage">{{ item.name }}</RouterLink>
+                <td>
+                    <a @click="editQuiz(item)">{{ item.name }}</a>
                 </td>
                 <!-- <td v-if="item.published">已發布</td>
                 <td v-if="!item.published">未發布</td> -->
                 <td>{{ item.state }}</td>
                 <td>{{ item.startDate }}</td>
                 <td>{{ item.endDate }}</td>
-                <td>{{}} <RouterLink to="/StatisticPage">{{ item.result }}</RouterLink>
+                <td>
+                    <RouterLink :to="{ name: 'StatisticPage', params: { id: item.id } }">{{ item.result }}</RouterLink>
                 </td>
             </tr>
         </table>

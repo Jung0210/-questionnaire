@@ -30,11 +30,22 @@ export default {
     },
     mounted() {
         const data = sessionStorage.getItem('quiz')
+        const data2 = JSON.parse(sessionStorage.getItem('quizData'))
         // console.log(this.data)
         if (data) {
             this.data = JSON.parse(data)
         }
+        console.log(data2);
+        if (data2) {
+            data2.quesList.forEach(item => {
+                this.questionList.push(item);
+            })
+        }
         // console.log(this.data)
+        // const survey = JSON.parse(sessionStorage.getItem('question`'));
+
+
+
 
     },
     methods: {

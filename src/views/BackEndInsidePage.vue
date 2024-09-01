@@ -31,6 +31,16 @@ export default {
             // 使用 Vue Router 的 push 方法導航到 /next 頁面
             this.$router.push('BacKEnd');
         },
+    },
+    mounted() {
+        const survey = JSON.parse(sessionStorage.getItem('quizData'));
+        if (survey) {
+
+            this.data.name = survey.name;
+            this.data.description = survey.description;
+            this.data.startDate = survey.startDate;
+            this.data.endDate = survey.endDate;
+        }
     }
 }
 </script>
@@ -51,16 +61,12 @@ export default {
         </div>
     </div>
     <div class="Group1">
-        <!-- <div class="oval0"> -->
+
         <div class="oval1">
             <p>問卷名稱:</p>
             <input v-model="data.name" type="text">
         </div>
-        <!-- </div> -->
-        <!-- <div class="oval1">
-            <p>問卷名稱:</p>
-            <input type="text">
-        </div> -->
+
         <div class="oval2">
             <p>問卷說明:</p>
             <textarea v-model="data.description" name="" id=""></textarea>
