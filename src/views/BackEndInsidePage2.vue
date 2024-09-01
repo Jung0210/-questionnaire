@@ -97,6 +97,9 @@ export default {
             sessionStorage.setItem('quizData', JSON.stringify(this.data))
             this.$router.push({ name: 'ConfirmationPage' });
         },
+        previousPage() {
+            this.$router.push({ name: 'BackEndInsidePage' });
+        }
     },
 
 }
@@ -200,7 +203,7 @@ export default {
         </div>
         <div class="end">
             <div class="line">
-                <button class="pre">上一步</button>
+                <button @click="previousPage" class="pre">上一步</button>
             </div>
             <div class="lineright">
                 <button @click="previewQuestions" class="send">送出</button>
@@ -300,10 +303,14 @@ body {
 
 .Group1 {
     width: 1000px;
-    border: 1px solid rgb(0, 0, 0);
+    // border: 1px solid rgb(0, 0, 0);
     margin-left: 200px;
     display: flex;
     // justify-content: space-between;
+    background-color: rgb(255, 252, 207);
+    border-bottom-left-radius: 10px;
+    border-bottom-right-radius: 10px;
+    border-top-right-radius: 0px;
     flex-direction: column;
     position: relative;
 
@@ -328,7 +335,7 @@ body {
             .oval13 {
                 width: 100px;
                 height: 40px;
-                border: 1px solid rgb(0, 0, 0);
+                // border: 1px solid rgb(0, 0, 0);
                 text-align: center;
             }
 
@@ -474,22 +481,24 @@ body {
 
     .Group4 {
         width: 735px;
-        border: 1px solid rgb(0, 0, 0);
+        border: 0px solid rgb(0, 0, 0);
         margin-top: 95px;
         margin-left: 146px;
         margin-right: 500px;
         margin-bottom: 100px;
 
+
         .box2 {
-            width: 735px;
+            width: 700px;
             border: 1px solid rgb(0, 0, 0);
             margin-top: 0px;
+            border-radius: 10px;
         }
     }
 
     .end {
         width: 600px;
-        border: 1px solid rgb(0, 0, 0);
+        // border: 1px solid rgb(0, 0, 0);
         display: flex;
         margin-left: 205px;
         margin-right: 500px;
@@ -500,7 +509,7 @@ body {
             height: 95px;
             display: flex;
             flex-direction: column;
-            border: 1px solid rgb(0, 0, 0);
+            // border: 1px solid rgb(0, 0, 0);
             justify-content: center;
             align-items: center;
 
@@ -509,6 +518,7 @@ body {
                 height: 35px;
                 font-size: 15px;
                 padding: auto auto;
+                border-radius: 10px;
             }
         }
 
@@ -517,7 +527,7 @@ body {
             height: 95px;
             display: flex;
             flex-direction: column;
-            border: 1px solid rgb(0, 0, 0);
+            // border: 1px solid rgb(0, 0, 0);
             justify-content: center;
             align-items: center;
 
@@ -527,6 +537,7 @@ body {
                 padding: auto auto; //兩個auto代表x軸和y軸
                 font-size: 15px;
                 text-align: center;
+                border-radius: 10px;
             }
         }
     }

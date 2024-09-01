@@ -34,28 +34,28 @@ export default {
                     item.options = item.options.join(";")
                 })
                 console.log(this.data)
-                const response = await fetch('http://localhost:8080/quiz/create', { // 替换成你的后端API地址
+                const response = await fetch('http://localhost:8080/quiz/create', { // 替換成你的後端api位址
                     method: 'POST',
                     headers: {
                         'Content-Type': 'application/json',
                     },
-                    body: JSON.stringify(this.data), // 将this.data转为JSON字符串发送
+                    body: JSON.stringify(this.data), // 將this.data轉成JSON字串發送
                 });
                 if (response.ok) {
                     console.log('数据保存成功！');
-                    // 处理成功响应（例如，显示成功消息）
+                    // 處理成功響應（例如，顯示成功消息）
                 } else {
                     console.error('保存数据失败。');
-                    // 处理失败响应（例如，显示错误消息）
+                    // 處理失敗響應（例如，顯示錯誤消息）
                 }
             } catch (error) {
                 console.error('发生错误：', error);
-                // 处理网络或其他错误
+                // 處理網路或其他錯誤
             }
             this.back()
         },
         async saveAndPublish() {
-            this.data.published = true; // 添加一个标记或属性表示发布
+            this.data.published = true; // 
             await this.saveData();
         },
         back() {
@@ -105,16 +105,16 @@ export default {
         </div>
         <div class="enter">
             <div class="line">
-                <input v-model="question.qu" type="one">
+                <input v-model="question.qu" type="one" disabled>
             </div>
             <div class="line1">
-                <input type="one">
+                <input type="one" disabled>
             </div>
             <div class="line2">
-                <input type="one">
+                <input type="one" disabled>
             </div>
             <div class="line3">
-                <input type="one">
+                <input type="one" disabled>
             </div>
         </div>
     </div>
@@ -195,7 +195,7 @@ body {
 .container {
     width: 900px;
     height: 200px;
-    border: 1px solid rgb(0, 0, 0);
+    // border: 1px solid rgb(0, 0, 0);
     margin-top: 20px;
     display: flex;
     margin-left: 300px;
@@ -203,7 +203,7 @@ body {
     .chocolate {
         width: 350px;
         height: 198px;
-        border: 1px solid rgb(0, 0, 0);
+        // border: 1px solid rgb(0, 0, 0);
         display: flex;
         flex-direction: column;
         justify-content: space-around;
@@ -211,15 +211,19 @@ body {
         .box {
             width: 349px;
             height: 40px;
-            border: 1px solid rgb(0, 0, 0);
+            // border: 1px solid rgb(0, 0, 0);
+            // display: flex;
+            // padding-top: 10px;
             font-size: 20px;
+            padding-top: 10px;
             text-align: center;
         }
 
         .box1 {
             width: 349px;
             height: 40px;
-            border: 1px solid rgb(0, 0, 0);
+            // border: 1px solid rgb(0, 0, 0);
+            padding-top: 10px;
             font-size: 20px;
             text-align: center;
         }
@@ -227,17 +231,20 @@ body {
         .box2 {
             width: 349px;
             height: 40px;
-            border: 1px solid rgb(0, 0, 0);
+            // border: 1px solid rgb(0, 0, 0);
             font-size: 20px;
+            padding-top: 10px;
             text-align: center;
         }
 
         .box3 {
             width: 349px;
             height: 40px;
-            border: 1px solid rgb(0, 0, 0);
+            // border: 1px solid rgb(0, 0, 0);
             font-size: 20px;
             text-align: center;
+            // justify-content: center;
+            padding-top: 10px;
         }
     }
 
@@ -356,7 +363,7 @@ body {
         width: 400px;
         height: 190px;
         padding-top: 10px;
-        border: 1px solid rgb(0, 0, 0);
+        // border: 1px solid rgb(0, 0, 0);
         position: relative;
         display: flex;
         justify-content: space-between;
@@ -469,7 +476,7 @@ body {
 .Group10 {
     width: 400px;
     height: 50px;
-    border: 1px solid rgb(0, 0, 0);
+    // border: 1px solid rgb(0, 0, 0);
     margin-top: 25px;
     margin-left: 1000px;
     display: flex;
@@ -477,7 +484,7 @@ body {
     .egg1 {
         width: 200px;
         height: 50px;
-        border: 1px solid rgb(0, 0, 0);
+        // border: 1px solid rgb(0, 0, 0);
         display: flex;
         justify-content: center;
         align-items: center;
@@ -491,7 +498,7 @@ body {
     .egg2 {
         width: 200px;
         height: 50px;
-        border: 1px solid rgb(0, 0, 0);
+        // border: 1px solid rgb(0, 0, 0);
         display: flex;
         justify-content: center;
         align-items: center;

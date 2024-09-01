@@ -2,57 +2,123 @@
 export default {
     data() {
         return {
-            pageArray: [{
-                id: "square1",
-                number: 444,
-                name: "購買傾項市調",
-                situation: "尚未開始",
-                dateStart: "2023/11/12",
-                dateEnd: "2024/05/02",
-                result: "前往",
+            searchArea: {
+                quizName: "",
+                startDate: "",
+                endDate: "",
             },
-            {
-                id: "square2",
-                number: 445,
-                name: "青春洋溢高中生",
-                situation: "開放中",
-                dateStart: "2023/12/05",
-                dateEnd: "2024/03/02",
-                result: "前往",
-            },
-            {
-                id: "square3",
-                number: 446,
-                name: "尾牙餐廳預選",
-                situation: "已關閉",
-                dateStart: "2023/01/05",
-                dateEnd: "2024/06/02",
-                result: "前往",
-            }
-            ]
+            quizList: [],
+            selectedQuizIds: []
         };
     },
     methods: {
         goToNextPage() {
             // 使用 Vue Router 的 push 方法導航到 /next 頁面
             this.$router.push('/BackEndInsidePage');
+        },
+        async search() {
+            await this.saveData();
+        },
+
+        async saveData() {
+            try {
+                const response = await fetch('http://localhost:8080/quiz/search', { // 替換成你的後端API地址
+                    method: 'POST',
+                    headers: {
+                        'Content-Type': 'application/json',
+                    },
+                    body: JSON.stringify(this.searchArea), // 將this.data轉成JSON字串發送
+                });
+                if (response.ok) {
+                    console.log('數據保存成功！');
+                    // 處理成功響應（例如，顯示成功消息）
+                    console.log(response);
+                    const data = await response.json(); // 解析返回的 JSON 數據
+                    this.quizList = data.quizResList
+                    console.log('返回的數據:', data.quizResList);
+                    this.quizList.forEach(item => {
+                        item.state = this.determineSituation(item.startDate, item.endDate)
+                    })
+
+                } else {
+                    console.error('保存數據失敗。');
+                    // 處理失敗響應（例如，顯示錯誤消息）
+                }
+            } catch (error) {
+                console.error('發生錯誤：', error);
+                // 處理網路或其他錯誤
+            }
+            this.back()
+        },
+        determineSituation(startDate, endDate) {
+            const now = new Date();
+            const start = new Date(startDate);
+            const end = new Date(endDate);
+            if (now < start) {
+                return '尚未開始';
+            } else if (now >= start && now <= end) {
+                return '開放中';
+            } else {
+                return '已结束';
+            }
+        },
+
+        async saveAndPublish() {
+            this.data.published = true; // 添加一個標記或屬性表示發布
+            await this.saveData();
+        },
+        back() {
+            // 使用 Vue Router 的 push 方法導航到 /next 頁面
+            this.$router.push('/BackEnd');
+        },
+
+        deleteSelected() {
+            if (this.selectedQuizIds.length === 0) {
+                alert('請選擇要刪除的項目');
+                return;
+            }
+            const confirmed = confirm('確定要刪除選中的項目嗎？');
+            if (confirmed) {
+                // 发送删除请求
+                fetch('http://localhost:8080/quiz/delete', {
+                    method: 'POST',
+                    headers: {
+                        'Content-Type': 'application/json',
+                    },
+                    body: JSON.stringify({ ids: this.selectedQuizIds }),
+                })
+                    .then(response => {
+                        if (response.ok) {
+                            console.log('刪除成功！');
+                            // 更新列表
+                            this.quizList = this.quizList.filter(item => !this.selectedQuizIds.includes(item.id));
+                            this.selectedQuizIds = []; // 清空已選中的id
+                        } else {
+                            console.error('刪除失敗。');
+                        }
+                    })
+                    .catch(error => {
+                        console.error('發生錯誤：', error);
+                    });
+
+            }
         }
-    },
-};
+    }
+}
 </script>
 
 <template>
     <div class="searchArea">
         <div class="enter">
             <p class="tree">問卷名稱:</p>
-            <input type="word" name="myfield" id="">
+            <input v-model="searchArea.quizName" type="word" name="myfield" id="">
         </div>
         <div class="time">
             <p>統計時間:</p>
-            <input type="date" id="bookdate" name="">
+            <input v-model="searchArea.startDate" type="date" id="bookdate" name="">
             <p>到</p>
-            <input type="date" id="bookdate" name="">
-            <button class="press">搜尋</button>
+            <input v-model="searchArea.endDate" type="date" id="bookdate" name="">
+            <button @click="search" class="press">搜尋</button>
         </div>
     </div>
     <div class="star">
@@ -75,24 +141,25 @@ export default {
                 <td> 結束時間 </td>
                 <td> 結果 </td>
             </tr>
-            <tr v-for="item in this.pageArray">
+            <tr v-for="item in this.quizList">
                 <!-- v-bind是會把裡面的東西設為變數 -->
                 <td><input type="checkbox" :id="item.id"></td>
 
-                <td> {{ item.number }} </td>
+                <td>{{ item.id }}</td>
                 <td> {{}} <RouterLink to="/BackEndInsidePage">{{ item.name }}</RouterLink>
                 </td>
-                <td>{{ item.situation }}</td>
-                <td>{{ item.dateStart }}</td>
-                <td>{{ item.dateEnd }}</td>
+                <!-- <td v-if="item.published">已發布</td>
+                <td v-if="!item.published">未發布</td> -->
+                <td>{{ item.state }}</td>
+                <td>{{ item.startDate }}</td>
+                <td>{{ item.endDate }}</td>
                 <td>{{}} <RouterLink to="/StatisticPage">{{ item.result }}</RouterLink>
                 </td>
             </tr>
         </table>
     </div>
-    <div class="page">
-        <p></p>
-    </div>
+    <!-- <div class="page">
+    </div> -->
 </template>
 <style scoped lang="scss">
 * {
@@ -108,16 +175,17 @@ body {
 .searchArea {
     width: 1500px;
     height: 150px;
-    border: 1px solid rgb(0, 0, 0);
+    // border: 1px solid rgb(0, 0, 0);
     display: flex;
     flex-direction: column;
     justify-content: space-around;
     align-items: center;
+    background-color: rgb(255, 248, 214);
 
     .enter {
         width: 500px;
         height: 60px;
-        border: 1px solid rgb(0, 0, 0);
+        // border: 1px solid rgb(0, 0, 0);
         padding-top: 5px;
         display: flex;
         padding-top: 10px;
@@ -139,7 +207,7 @@ body {
     .time {
         width: 500px;
         height: 60px;
-        border: 1px solid rgb(0, 0, 0);
+        // border: 1px solid rgb(0, 0, 0);
         font-size: 20px;
         padding-top: 5px;
         display: flex;
@@ -160,7 +228,7 @@ body {
 .star {
     width: 150px;
     height: 50px;
-    border: 1px solid rgb(0, 0, 0);
+    // border: 1px solid rgb(0, 0, 0);
     display: flex;
     justify-content: space-evenly;
     margin-top: 30px;
@@ -169,7 +237,7 @@ body {
     .star1 {
         width: 60px;
         height: 50px;
-        border: 1px solid rgb(0, 0, 0);
+        // border: 1px solid rgb(0, 0, 0);
         font-size: 40px;
         text-align: center;
     }
@@ -177,7 +245,7 @@ body {
     .star2 {
         width: 60px;
         height: 50px;
-        border: 1px solid rgb(0, 0, 0);
+        // border: 1px solid rgb(0, 0, 0);
         font-size: 40px;
         text-align: center;
     }
@@ -185,16 +253,17 @@ body {
 
 .Group18 {
     width: 600px;
-    height: 300px;
-    border: 1px solid rgb(0, 0, 0);
+    // height: 300px;
+    // border: 1px solid rgb(0, 0, 0);
     margin-top: 30px;
     margin-left: 450px;
 
 
     .box {
         width: 600px;
-        height: 300px;
-        border: 1px solid rgb(0, 0, 0);
+        // height: 300px;
+        // border: 1px solid rgb(0, 0, 0);
+        background-color: rgba(251, 255, 227, 0.995);
         text-align: center;
     }
 }
@@ -202,7 +271,7 @@ body {
 .page {
     width: 714px;
     height: 28px;
-    border: 1px solid rgb(0, 0, 0);
+    // border: 1px solid rgb(0, 0, 0);
     display: flex;
     margin-left: 380px;
     margin-top: 60px;

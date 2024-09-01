@@ -110,7 +110,7 @@ body {
         border: 1px solid rgb(0, 0, 0);
         border-top-left-radius: 10px;
         border-top-right-radius: 10px;
-        background-color: #e2e2e2;
+        // background-color: #e9ffc0;
         text-align: center;
         font-size: 30px;
 
@@ -154,6 +154,7 @@ body {
         width: 150px;
         height: 50px;
         border: 1px solid rgb(0, 0, 0);
+
         border-top-left-radius: 10px;
         border-top-right-radius: 10px;
         background-color: #e2e2e2;
@@ -174,8 +175,12 @@ body {
 .Group1 {
     width: 1000px;
     height: 500px;
-    border: 1px solid rgb(0, 0, 0);
+    // border: 1px solid rgb(0, 0, 0);
+    background-color: rgb(255, 227, 145);
     margin-left: 200px;
+    border-top-right-radius: 10px;
+    border-bottom-right-radius: 10px;
+    border-bottom-left-radius: 10px;
     display: flex;
     // justify-content: space-between;
     flex-direction: column;
