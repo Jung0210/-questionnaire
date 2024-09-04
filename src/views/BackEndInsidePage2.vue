@@ -19,43 +19,47 @@ export default {
             questionList: [],
 
             question: {
+                quizId: 0,
                 id: '',
                 qu: '',
                 type: '',
                 necessary: false,
                 options: '',
-            }
+            },
+            data2: {}
 
         };
     },
     mounted() {
         const data = sessionStorage.getItem('quiz')
-        const data2 = JSON.parse(sessionStorage.getItem('quizData'))
-        // console.log(this.data)
+        this.data2 = JSON.parse(sessionStorage.getItem('quizData'))
+        console.log(data)
+        console.log(this.data2)
         if (data) {
             this.data = JSON.parse(data)
         }
-        console.log(data2);
-        if (data2) {
-            data2.quesList.forEach(item => {
+        console.log(data)
+        console.log(this.data2);
+        if (this.data2) {
+            this.data2.quesList.forEach(item => {
                 this.questionList.push(item);
             })
         }
+        console.log(this.data2);
         // console.log(this.data)
         // const survey = JSON.parse(sessionStorage.getItem('question`'));
-
-
-
-
     },
     methods: {
         addQuestion() {
+            const data3 = JSON.parse(sessionStorage.getItem('quizData'))
+            // console.log(data3.id)
             if (this.question.qu) {
                 if (this.question.type !== 'short' && !this.question.options) {
                     alert('請輸入選項');
                     return;
                 }
-                this.question.id = this.quid
+                // this.question.quizId = data3.id
+                this.question.id = this.questionList.length + 1
                 this.questionList.push({ ...this.question });//把新增的問題增加到陣列裡
                 //重置問題
                 this.question.qu = '';
@@ -89,6 +93,7 @@ export default {
         // 重置問題填寫表單
         resetNewQuestion() {
             this.question = {
+                quizId: this.data2.id,
                 qu: '',
                 type: 'single',
                 options: '',
@@ -101,10 +106,14 @@ export default {
             this.questionList.splice(index, 1);
         },
         previewQuestions() {
+            const data2 = JSON.parse(sessionStorage.getItem('quizData'))
             console.log(this.questionList)
-            console.log(this.data)
+            console.log(this.data2)
+            // this.questionList.forEach(item => {
+            //     this.data2.quesList.push(item)
+            // })
             this.data.quesList = this.questionList
-            console.log(this.data)
+            console.log(data2)
             sessionStorage.setItem('quizData', JSON.stringify(this.data))
             this.$router.push({ name: 'ConfirmationPage' });
         },

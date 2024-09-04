@@ -3,6 +3,7 @@ export default {
     data() {
         return {
             data: {
+                id: '',
                 name: '',
                 description: '',
                 startDate: '',
@@ -35,7 +36,7 @@ export default {
     mounted() {
         const survey = JSON.parse(sessionStorage.getItem('quizData'));
         if (survey) {
-
+            this.data.id = survey.id;
             this.data.name = survey.name;
             this.data.description = survey.description;
             this.data.startDate = survey.startDate;

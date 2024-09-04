@@ -2,7 +2,6 @@
 export default {
     data() {
         return {
-            editOrNot: false,
             quid: 1,
             newQuestion: {
                 text: '',
@@ -53,86 +52,57 @@ export default {
                 console.error('发生错误：', error);
                 // 處理網路或其他錯誤
             }
-            this.backoff()
+            this.back()
         },
-        // async saveAndPublish() {
-        //     this.data.published = true; // 
-        //     await this.saveData();
-        // },
-        backoff() {
+        async saveAndPublish() {
+            this.data.published = true; // 
+            await this.saveData();
+        },
+        back() {
             // 使用 Vue Router 的 push 方法導航到 /next 頁面
             this.$router.push('/BackEnd');
         },
 
 
         async saveDataPublish() {
-            console.log(this.data.id)
-            if (this.data.id > 0) {
-                console.log("Xx")
-                try {
-                    this.data.quesList.forEach(item => {
-                        item.options = item.options.join(";")
-                    })
-                    this.data.published = true; // 
-                    console.log(this.data)
-                    const response = await fetch('http://localhost:8080/quiz/update', { // 替換成你的後端api位址
-                        method: 'POST',
-                        headers: {
-                            'Content-Type': 'application/json',
-                        },
-                        body: JSON.stringify(this.data), // 將this.data轉成JSON字串發送
-                    });
-                    if (response.ok) {
-                        console.log('数据編輯成功！');
-
-                        // 處理成功響應（例如，顯示成功消息）
-                    } else {
-                        console.log(response);
-
-                        console.error('編輯数据失败。');
-                        // 處理失敗響應（例如，顯示錯誤消息）
-                    }
-                } catch (error) {
-                    console.error('发生错误：', error);
-                    // 處理網路或其他錯誤
-                }
-            } else {
-
-                try {
-                    this.data.quesList.forEach(item => {
-                        item.options = item.options.join(";")
-                    })
-                    this.data.published = true; // 
-                    console.log(this.data)
-                    const response = await fetch('http://localhost:8080/quiz/create', { // 替換成你的後端api位址
-                        method: 'POST',
-                        headers: {
-                            'Content-Type': 'application/json',
-                        },
-                        body: JSON.stringify(this.data), // 將this.data轉成JSON字串發送
-                    });
-                    if (response.ok) {
-                        console.log('数据保存成功！');
-                        // 處理成功響應（例如，顯示成功消息）
-                    } else {
-                        console.error('保存数据失败。');
-                        // 處理失敗響應（例如，顯示錯誤消息）
-                    }
-                } catch (error) {
-                    console.error('发生错误：', error);
-                    // 處理網路或其他錯誤
-                }
-                // async saveAndPublish() {
-
+            try {
+                this.data.quesList.forEach(item => {
+                    item.options = item.options.join(";")
+                })
                 console.log(this.data)
-                this.back()
+                const response = await fetch('http://localhost:8080/quiz/create', { // 替換成你的後端api位址
+                    method: 'POST',
+                    headers: {
+                        'Content-Type': 'application/json',
+                    },
+                    body: JSON.stringify(this.data), // 將this.data轉成JSON字串發送
+                });
+                if (response.ok) {
+                    console.log('数据保存成功！');
+                    // 處理成功響應（例如，顯示成功消息）
+                } else {
+                    console.error('保存数据失败。');
+                    // 處理失敗響應（例如，顯示錯誤消息）
+                }
+            } catch (error) {
+                console.error('发生错误：', error);
+                // 處理網路或其他錯誤
             }
+            this.back()
         },
-
+        async saveAndPublish() {
+            this.data.published = true; // 
+            await this.saveData();
+        },
         back() {
             // 使用 Vue Router 的 push 方法導航到 /next 頁面
             this.$router.push('/');
         },
+
+        // HomeViewPage() {
+        //     this.$router.push({ name: 'HomeView' });
+        // }
+
     },
 
 
@@ -145,7 +115,7 @@ export default {
                 item.options = item.options.split(";")
             });
         }
-        console.log(this.data.id)
+        console.log(data)
 
     }
 }
@@ -177,16 +147,16 @@ export default {
         </div>
         <div class="enter">
             <div class="line">
-                <input v-model="question.qu" type="one" disabled>
+                <input v-model="question.qu" type="one">
             </div>
             <div class="line1">
-                <input type="one" disabled>
+                <input type="one">
             </div>
             <div class="line2">
-                <input type="one" disabled>
+                <input type="one">
             </div>
             <div class="line3">
-                <input type="one" disabled>
+                <input type="one">
             </div>
         </div>
     </div>
@@ -203,20 +173,20 @@ export default {
 
                 <div v-if="item.type === 'single'" class="team1">
                     <!---單選題,使用radio--->
-                    <input type="radio" :name="question" disabled>
+                    <input type="radio" :name="question">
                     {{ option }}
                 </div>
                 <!-- v-for="(option,i) in this item.options" :key="i" -->
 
                 <div v-if="item.type === 'multiple'" class="team1">
                     <!-- 多選題，使用 checkbox -->
-                    <input type="checkbox" disabled>
+                    <input type="checkbox">
                     {{ option }}
                 </div>
 
                 <div v-if="item.type === 'short'" class="team1">
                     <!-- 短述題 -->
-                    <textarea disabled></textarea>
+                    <textarea></textarea>
                     {{}}
                 </div>
             </div>
@@ -224,7 +194,7 @@ export default {
     </div>
     <div class="Group10">
         <div class="egg1">
-            <button @click="saveData" class="Cancel">僅儲存</button>
+            <button @click="HomeViewPage" class="Cancel">取消</button>
         </div>
         <div class="egg2">
             <button @click="saveDataPublish" class="send">儲存並發布</button>

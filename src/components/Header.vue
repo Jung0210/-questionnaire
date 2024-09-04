@@ -17,6 +17,7 @@ export default {
         <RouterLink to="/BackEndInsidePage">BackEndInsidePage</RouterLink>
         <RouterLink to="/BackEndInsidePage2">BackEndInsidePage2</RouterLink>
         <RouterLink to="/BackEndInsidePage3">BackEndInsidePage3</RouterLink>
+        <RouterLink to="/FillinPage">FillinPage</RouterLink>
     </div>
 </template>
 

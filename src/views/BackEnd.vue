@@ -46,7 +46,7 @@ export default {
                     this.quizList = data.quizResList
                     console.log('返回的數據:', data.quizResList);
                     this.quizList.forEach(item => {
-                        item.state = this.determineSituation(item.startDate, item.endDate)
+                        item.state = this.determineSituation(item.startDate, item.endDate, item.published)
                     })
 
                 } else {
@@ -59,7 +59,10 @@ export default {
             }
             this.back()
         },
-        determineSituation(startDate, endDate) {
+        determineSituation(startDate, endDate, published) {
+            if (!published) {
+                return '未開放'
+            }
             const now = new Date();
             const start = new Date(startDate);
             const end = new Date(endDate);
@@ -74,6 +77,7 @@ export default {
         editQuiz(item) {
             // 将问卷数据存储到 Session Storage
             sessionStorage.setItem('quizData', JSON.stringify({
+                id: item.id,
                 name: item.name,
                 description: item.description,
                 startDate: item.startDate,
@@ -189,8 +193,6 @@ export default {
             </tr>
         </table>
     </div>
-    <!-- <div class="page">
-    </div> -->
 </template>
 <style scoped lang="scss">
 * {
